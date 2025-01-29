@@ -1,0 +1,15 @@
+[Unit]
+Description=mrps frontend
+After=network.target multi-user.target
+
+[Service]
+User=ubuntu
+
+WorkingDirectory=/home/ubuntu/mrps-frontend
+ExecStart=/usr/bin/npm start
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mrpsf
+
+[Install]
+WantedBy=multi-user.target
