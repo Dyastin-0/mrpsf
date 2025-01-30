@@ -27,7 +27,9 @@ const RateLimiter = ({ limiter }) => {
           text={
             <div>
               <span>Cooldown </span>
-              <span className="text-primary-highlight">{limiter.Cooldown}</span>
+              <span className="text-primary-highlight">
+                {limiter.Cooldown / 1000}m
+              </span>
             </div>
           }
           className="text-xs"
