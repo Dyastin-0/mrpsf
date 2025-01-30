@@ -28,7 +28,7 @@ const RateLimiter = ({ limiter }) => {
             <div>
               <span>Cooldown </span>
               <span className="text-primary-highlight">
-                {limiter.Cooldown / 1000}m
+                {limiter.Cooldown / 1000 / 60}m
               </span>
             </div>
           }
