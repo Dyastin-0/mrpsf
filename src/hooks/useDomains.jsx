@@ -13,7 +13,7 @@ export const DomainsProvider = ({ children }) => {
     if (!isAxiosReady) return;
 
     const ws = new WebSocket(
-      import.meta.env.VITE_BASE_API_URL + `/ws?t=${token}`
+      import.meta.env.VITE_BASE_API_URL + `/api/ws?t=${token}`
     );
 
     ws.onmessage = (event) => {
