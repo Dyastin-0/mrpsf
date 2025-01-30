@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import Domain from "../components/Domain";
+import useAuth from "../hooks/useAuth";
 import useDomains from "../hooks/useDomains";
 
 const Dashboard = () => {

@@ -1,19 +1,35 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import useSWR from "swr";
 import useAxios from "../hooks/useAxios"; // Assuming useAxios is your custom hook for Axios setup
+import useAuth from "./useAuth";
 
 const DomainsContext = createContext();
 
 export const DomainsProvider = ({ children }) => {
   const { api, isAxiosReady } = useAxios();
+  const { token } = useAuth();
 
-  const { data: domains, error } = useSWR(
-    isAxiosReady ? "/config" : null,
-    async () => {
-      const response = await api.get("/config");
-      return response.data;
-    }
-  );
+  useEffect(() => {
+    if (!isAxiosReady) return;
+
+    const ws = new WebSocket(
+      import.meta.env.VITE_BASE_API_URL + `/ws?t=${token}`
+    );
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      data && mutate(data, false);
+    };
+  }, [isAxiosReady, api]);
+
+  const {
+    data: domains,
+    error,
+    mutate,
+  } = useSWR(isAxiosReady ? "/config" : null, async () => {
+    const response = await api.get("/config");
+    return response.data;
+  });
 
   return (
     <DomainsContext.Provider value={{ domains, error }}>

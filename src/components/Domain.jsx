@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import Tooltip from "./ui/Tooltip";
 import TruncatedText from "./ui/TruncatedText";
 
 const Domain = ({ domain, config }) => {
