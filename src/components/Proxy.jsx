@@ -21,7 +21,7 @@ const Proxy = ({ domain, config }) => {
 
   return (
     <div className="grid grid-cols-1 w-full h-full gap-3 p-3 bg-secondary rounded-md border border-secondary-accent text-primary-foreground">
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 w-full justify-between items-center">
         <TruncatedText text={domain} className="text-xs font-semibold" />
         <Toggle value={enabled} onClick={handleEnabled} />
       </div>
