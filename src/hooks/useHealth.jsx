@@ -1,0 +1,39 @@
+import { createContext, useContext, useEffect, useState } from "react";
+import useAxios from "../hooks/useAxios";
+import useAuth from "./useAuth";
+
+const HealthContext = createContext();
+
+export const HealthProvider = ({ children }) => {
+  const { api } = useAxios();
+  const { token } = useAuth();
+
+  const [health, setHealth] = useState(null);
+
+  useEffect(() => {
+    if (!token) return;
+    api.get("/config/health");
+  }, [token]);
+
+  useEffect(() => {
+    console.log(health);
+  }, [health]);
+
+  return (
+    <HealthContext.Provider value={{ health, mutate: setHealth }}>
+      {children}
+    </HealthContext.Provider>
+  );
+};
+
+const useHealth = () => {
+  const context = useContext(HealthContext);
+
+  if (!context) {
+    throw new Error("useHealth must be used within a HealthProvider");
+  }
+
+  return context;
+};
+
+export default useHealth;

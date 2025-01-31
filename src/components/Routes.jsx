@@ -1,19 +1,29 @@
+import useHealth from "../hooks/useHealth";
 import TruncatedText from "./ui/TruncatedText";
 
 const Routes = ({ routes }) => {
+  const { health } = useHealth();
+
   return (
     <>
       <h3 className="text-xs font-semibold">Routes</h3>
       {Object.entries(routes).map(([path, routeConfig]) => (
         <div key={path} className="flex gap-2">
-          <TruncatedText
-            text={path}
-            className="text-xs text-primary-highlight font-semibold"
-          />
-          <TruncatedText
-            text={routeConfig.Dest}
-            className="text-xs font-semibold"
-          />
+          <div className="flex gap-2 items-center">
+            <span
+              className={`rounded-full w-2 h-2 ${
+                health && health[routeConfig.Dest] > 0 ? "bg-green" : "bg-red"
+              }`}
+            />
+            <TruncatedText
+              text={path}
+              className="text-xs text-primary-highlight font-semibold"
+            />
+            <TruncatedText
+              text={routeConfig.Dest}
+              className="text-xs font-semibold"
+            />
+          </div>
           {routeConfig.RewriteRule.Type !== "" && (
             <TruncatedText
               text={routeConfig.RewriteRule.Value}
