@@ -14,7 +14,7 @@ export const HealthProvider = ({ children }) => {
     if (!token) return;
     const subscribe = async () => {
       const { data } = await api.get("/config/health");
-      setHealth(data.health);
+      data?.health && setHealth(data.health);
     };
     subscribe();
   }, [token]);
