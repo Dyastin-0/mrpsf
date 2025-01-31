@@ -10,10 +10,13 @@ export const HealthProvider = ({ children }) => {
 
   const [health, setHealth] = useState(null);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!token) return;
-    const res = await api.get("/config/health");
-    setHealth(res.data);
+    const subscribe = async () => {
+      const { data } = await api.get("/config/health");
+      setHealth(data.health);
+    };
+    subscribe();
   }, [token]);
 
   return (
