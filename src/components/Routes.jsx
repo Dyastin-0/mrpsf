@@ -1,4 +1,5 @@
 import useHealth from "../hooks/useHealth";
+import { Dot } from "./ui/Dot";
 import TruncatedText from "./ui/TruncatedText";
 
 const Routes = ({ routes }) => {
@@ -8,22 +9,16 @@ const Routes = ({ routes }) => {
     <>
       <h3 className="text-xs font-semibold">Routes</h3>
       {Object.entries(routes).map(([path, routeConfig]) => (
-        <div key={path} className="flex gap-2">
-          <div className="flex gap-2 items-center">
-            <span
-              className={`rounded-full w-2 h-2 ${
-                health && health[routeConfig.Dest] > 0 ? "bg-green" : "bg-red"
-              }`}
-            />
-            <TruncatedText
-              text={path}
-              className="text-xs text-primary-highlight font-semibold"
-            />
-            <TruncatedText
-              text={routeConfig.Dest}
-              className="text-xs font-semibold"
-            />
-          </div>
+        <div key={path} className="flex gap-2 items-center">
+          <Dot val={health && health[routeConfig.Dest] > 0} />
+          <TruncatedText
+            text={path}
+            className="text-xs text-primary-highlight font-semibold"
+          />
+          <TruncatedText
+            text={routeConfig.Dest}
+            className="text-xs font-semibold"
+          />
           {routeConfig.RewriteRule.Type !== "" && (
             <TruncatedText
               text={routeConfig.RewriteRule.Value}
