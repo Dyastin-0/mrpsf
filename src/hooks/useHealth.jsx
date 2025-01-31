@@ -12,7 +12,7 @@ export const HealthProvider = ({ children }) => {
 
   useEffect(async () => {
     if (!token) return;
-    res = await api.get("/config/health");
+    const res = await api.get("/config/health");
     setHealth(res.data);
   }, [token]);
 
