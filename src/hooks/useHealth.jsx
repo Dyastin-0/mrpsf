@@ -15,10 +15,6 @@ export const HealthProvider = ({ children }) => {
     api.get("/config/health");
   }, [token]);
 
-  useEffect(() => {
-    console.log(health);
-  }, [health]);
-
   return (
     <HealthContext.Provider value={{ health, mutate: setHealth }}>
       {children}
