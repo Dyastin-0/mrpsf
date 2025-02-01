@@ -54,7 +54,7 @@ export const Dropdown = ({
         transition={0}
         onFocus={() => setIsOpen(true)}
         className={`absolute flex flex-col items-end top-full mt-2 right-0
-					text-primary-foreground text-xs bg-secondary
+					text-primary-foreground text-sm bg-secondary
 					w-fit max-h-[200px] overflow-auto z-30
 					p-1.5 gap-1.5 shadow-md rounded-md`}
         onBlur={handleBlur}
@@ -80,7 +80,7 @@ export const DropdownItem = ({
   ) : (
     <button
       className="flex text-right w-full justify-end items-center
-      text-nowrap text-primary-foreground text-xs z-50
+      text-nowrap text-primary-foreground text-sm z-50
       outline-none p-2 rounded-md transition-all duration-300 gap-1
 			hover:bg-primary hover:cursor-pointer focus:bg-primary
       active:shadow-[var(--highlight)_0_0_0_2px]"

@@ -47,7 +47,7 @@ const SearchInput = ({
         placeholder={placeholder}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
-        className="bg-transparent text-primary-foreground placeholder-secondary-foreground rounded-md text-xs outline-none
+        className="bg-transparent text-primary-foreground placeholder-secondary-foreground rounded-md text-sm outline-none
 					w-full"
       />
     </form>

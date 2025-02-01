@@ -1,8 +1,9 @@
 import useDomains from "../hooks/useDomains";
 import useHealth from "../hooks/useHealth";
 import Stat from "./Stat";
+import Uptime from "./Uptime";
 
-const Topbar = () => {
+const Sidebar = () => {
   const { domains } = useDomains();
   const { health } = useHealth();
 
@@ -19,7 +20,8 @@ const Topbar = () => {
   );
 
   return (
-    <div className="flex justify-center w-full h-fit gap-3 p-3 bg-primary rounded-md">
+    <div className="flex flex-col h-full w-[200px] gap-3 p-3 rounded-md">
+      <Uptime />
       <Stat
         title="Domains"
         count={enabledCount}
@@ -42,4 +44,4 @@ const Topbar = () => {
   );
 };
 
-export default Topbar;
+export default Sidebar;

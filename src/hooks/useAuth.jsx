@@ -7,7 +7,6 @@ const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }) {
   const [signingIn, setSigningIn] = useState(true);
-  const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -27,8 +26,6 @@ export function AuthProvider({ children }) {
 
   const value = {
     token,
-    user,
-    setUser,
     setToken,
     signingIn,
   };

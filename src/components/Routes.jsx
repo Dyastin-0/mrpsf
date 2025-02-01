@@ -7,22 +7,22 @@ const Routes = ({ routes }) => {
 
   return (
     <>
-      <h3 className="text-xs font-semibold">Routes</h3>
+      <h3 className="text-sm font-semibold">Routes</h3>
       {Object.entries(routes).map(([path, routeConfig]) => (
         <div key={path} className="flex gap-2 items-center">
           <Dot value={health && health[routeConfig.Dest]} />
           <TruncatedText
             text={path}
-            className="text-xs text-primary-highlight font-semibold"
+            className="text-sm text-primary-highlight font-semibold"
           />
           <TruncatedText
             text={routeConfig.Dest}
-            className="text-xs font-semibold"
+            className="text-sm font-semibold"
           />
           {routeConfig.RewriteRule.Type !== "" && (
             <TruncatedText
               text={routeConfig.RewriteRule.Value}
-              className="text-xs font-semibold"
+              className="text-sm font-semibold"
             />
           )}
           {routeConfig.RewriteRule.Type === "regex" ? (
@@ -32,7 +32,7 @@ const Routes = ({ routes }) => {
                 routeConfig.RewriteRule.Value,
                 routeConfig.RewriteRule.ReplaceVal
               )}
-              className="text-xs text-primary-highlight font-semibold"
+              className="text-sm text-primary-highlight font-semibold"
             />
           ) : routeConfig.RewriteRule.Type === "prefix" ? (
             <TruncatedText
@@ -40,12 +40,12 @@ const Routes = ({ routes }) => {
                 routeConfig.RewriteRule.Value,
                 routeConfig.RewriteRule.ReplaceVal
               )}
-              className="text-xs text-primary-highlight font-semibold"
+              className="text-sm text-primary-highlight font-semibold"
             />
           ) : (
             <TruncatedText
               text={path}
-              className="text-xs font-semibold text-primary-highlight"
+              className="text-sm font-semibold text-primary-highlight"
             />
           )}
         </div>

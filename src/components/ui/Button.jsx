@@ -31,7 +31,7 @@ const Button = ({
       className={clsx(
         `flex h-fit items-center font-semibold gap-1 ${
           end ? "justify-end" : "justify-center"
-        } text-xs outline-none transition-all duration-300` +
+        } text-sm outline-none transition-all duration-300` +
           "focus:shadow-[var(--accent-secondary)_0_0_0_2px] active:shadow-[var(--highlight)_0_0_0_2px] hover:shadow-[var(--accent-secondary)_0_0_0_2px]",
         variants[variant],
         className

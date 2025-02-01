@@ -17,7 +17,7 @@ const Checkbox = ({ name, onChecked, value = false }) => {
       onClick={onChecked}
       type="button"
     >
-      <p className="text-xs">{name}</p>
+      <p className="text-sm">{name}</p>
     </button>
   );
 };

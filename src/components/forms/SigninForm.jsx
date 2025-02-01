@@ -38,7 +38,7 @@ const SigninForm = ({}) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col w-[250px] max-w-full p-3 text-xs text-primary-foreground rounded-md border border-secondary-accent z-10"
+      className="flex flex-col w-[250px] max-w-full p-3 text-sm text-primary-foreground rounded-md border border-secondary-accent z-10"
     >
       <div className="flex gap-1 justify-center items-center text-lg font-semibold">
         <span>Sign in to</span>

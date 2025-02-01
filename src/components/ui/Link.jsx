@@ -24,7 +24,7 @@ const Link = ({ path, icon, name, onClick }) => {
           <FontAwesomeIcon icon={icon} />
         </span>
       )}
-      {name && <span className="text-xs p-2">{name}</span>}
+      {name && <span className="text-sm p-2">{name}</span>}
     </DomLink>
   );
 };

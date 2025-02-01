@@ -39,7 +39,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-2 py-1 text-xs bg-accent shadow-sm disabled:bg-secondary rounded-md text-primary-foreground
+        className="px-2 py-1 text-sm bg-accent shadow-sm disabled:bg-secondary rounded-md text-primary-foreground
         transition-all duration-300"
       >
         <FontAwesomeIcon icon={faChevronLeft} />
@@ -49,7 +49,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           key={index}
           onClick={() => onPageChange(page)}
           disabled={page === currentPage || page === "..."}
-          className={`px-2 py-1 text-xs rounded-md 
+          className={`px-2 py-1 text-sm rounded-md 
             transition-all duration-300
             ${
               page == currentPage
@@ -63,7 +63,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-2 py-1 text-xs bg-accent disabled:bg-secondary shadow-sm rounded-md text-primary-foreground
+        className="px-2 py-1 text-sm bg-accent disabled:bg-secondary shadow-sm rounded-md text-primary-foreground
         transition-all duration-300"
       >
         <FontAwesomeIcon icon={faChevronRight} />
