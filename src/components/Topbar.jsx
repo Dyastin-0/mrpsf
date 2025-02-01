@@ -19,7 +19,7 @@ const Topbar = () => {
   );
 
   return (
-    <div className="flex w-full h-fit gap-3 p-3 bg-primary rounded-md">
+    <div className="flex justify-center w-full h-fit gap-3 p-3 bg-primary rounded-md">
       <Stat
         title="Domains"
         count={enabledCount}
