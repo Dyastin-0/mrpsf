@@ -10,7 +10,7 @@ const Routes = ({ routes }) => {
       <h3 className="text-xs font-semibold">Routes</h3>
       {Object.entries(routes).map(([path, routeConfig]) => (
         <div key={path} className="flex gap-2 items-center">
-          <Dot val={health && health[routeConfig.Dest] > 0} />
+          <Dot value={health && health[routeConfig.Dest]} />
           <TruncatedText
             text={path}
             className="text-xs text-primary-highlight font-semibold"

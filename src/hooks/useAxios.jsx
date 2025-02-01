@@ -57,8 +57,7 @@ const useAxios = () => {
   const refreshAccessToken = async () => {
     try {
       const response = await axios.post("/refresh");
-
-      const newAccessToken = response.data.accessToken;
+      const newAccessToken = response.data;
       setToken(newAccessToken);
       return newAccessToken;
     } catch (error) {
