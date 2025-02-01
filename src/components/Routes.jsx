@@ -1,6 +1,5 @@
 import useHealth from "../hooks/useHealth";
 import { Dot } from "./ui/Dot";
-import Tooltip from "./ui/Tooltip";
 import TruncatedText from "./ui/TruncatedText";
 
 const Routes = ({ routes }) => {
@@ -11,15 +10,7 @@ const Routes = ({ routes }) => {
       <h3 className="text-xs font-semibold">Routes</h3>
       {Object.entries(routes).map(([path, routeConfig]) => (
         <div key={path} className="flex gap-2 items-center">
-          <Tooltip
-            text={
-              health && health[routeConfig.Dest] > 0
-                ? "Healthy"
-                : "Unhealthy (possibly down)"
-            }
-          >
-            <Dot value={health && health[routeConfig.Dest]} />
-          </Tooltip>
+          <Dot value={health && health[routeConfig.Dest]} />
           <TruncatedText
             text={path}
             className="text-xs text-primary-highlight font-semibold"
