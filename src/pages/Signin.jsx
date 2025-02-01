@@ -7,7 +7,7 @@ const Signin = () => {
   const navigate = useNavigate();
 
   if (token) {
-    navigate("/repositories");
+    navigate("/proxies");
     return;
   }
 
