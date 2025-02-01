@@ -42,7 +42,6 @@ const Sidebar = () => {
           r: "Unhealthy routes (possibly down)",
         }}
       />
-      <Button icon={faGear} />
     </div>
   );
 };
