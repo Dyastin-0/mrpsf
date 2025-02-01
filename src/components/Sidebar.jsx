@@ -1,8 +1,6 @@
-import { faGear } from "@fortawesome/free-solid-svg-icons";
 import useDomains from "../hooks/useDomains";
 import useHealth from "../hooks/useHealth";
 import Stat from "./Stat";
-import Button from "./ui/Button";
 import Uptime from "./Uptime";
 
 const Sidebar = () => {
