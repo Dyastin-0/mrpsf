@@ -19,6 +19,7 @@ import { Link as DomLink } from "react-router-dom";
 import MRPS from "./MRPS";
 import useViewport from "../hooks/useViewport";
 import Tooltip from "./ui/Tooltip";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Navbar = ({ toggleSideNavbar }) => {
   const navigate = useNavigate();
@@ -84,6 +85,9 @@ const Navbar = ({ toggleSideNavbar }) => {
           ))}
       </div>
       <div className="flex w-fit gap-1 justify-center items-center">
+        <Tooltip>
+          <Button variant="default_rounded" icon={faGithub} />
+        </Tooltip>
         <Tooltip text="Toggle theme">
           <Button
             variant="default_rounded"

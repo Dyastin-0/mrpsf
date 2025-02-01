@@ -14,7 +14,7 @@ const SigninForm = ({}) => {
 
   useEffect(() => {
     if (token) {
-      navigate("/repositories");
+      navigate("/proxies");
     }
   }, [token, navigate]);
 
@@ -31,7 +31,6 @@ const SigninForm = ({}) => {
     if (email && password) {
       const { data } = await axios.post("/auth", { email, password });
       setToken(data.accessToken);
-      console.log(data);
     }
   };
 

@@ -40,8 +40,8 @@ const Uptime = () => {
 
   return uptime ? (
     <div className="flex w-full justify-between gap-2 text-primary-foreground">
-      <h1 className="text-sm font-semibold">Uptime</h1>
-      <div className="flex font-semibold gap-2">
+      <h1 className="text-xs font-semibold">Uptime</h1>
+      <div className="flex font-semibold gap-1">
         {elapsed.hours > 0 && (
           <span className="text-sm text-semibold">{elapsed.hours} hours</span>
         )}

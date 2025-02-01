@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Sidebar from "./components/Sidebar";
+import useAuth from "./hooks/useAuth";
 
 const Signin = lazy(() => import("./pages/Signin"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -13,12 +14,14 @@ axios.defaults.baseURL = import.meta.env.VITE_BASE_API_URL;
 axios.defaults.withCredentials = true;
 
 const App = () => {
+  const { token } = useAuth();
+
   return (
-    <div className="app-container flex flex-col min-h-screen">
+    <>
       <Navbar />
-      <div className="main-content flex flex-1">
-        <Sidebar />
-        <div className="page-content flex-1">
+      <div className="relative w-full h-full justify-center flex flex-1">
+        {token && <Sidebar />}
+        <div className="max-w-[1100px]">
           <Suspense>
             <Routes>
               <Route path="/sign-in" element={<Signin />} />
@@ -30,7 +33,7 @@ const App = () => {
           </Suspense>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

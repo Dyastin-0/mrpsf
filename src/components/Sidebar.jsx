@@ -1,6 +1,8 @@
+import { faGear } from "@fortawesome/free-solid-svg-icons";
 import useDomains from "../hooks/useDomains";
 import useHealth from "../hooks/useHealth";
 import Stat from "./Stat";
+import Button from "./ui/Button";
 import Uptime from "./Uptime";
 
 const Sidebar = () => {
@@ -20,7 +22,7 @@ const Sidebar = () => {
   );
 
   return (
-    <div className="flex flex-col h-full w-[200px] gap-3 p-3 rounded-md">
+    <div className="sticky top-0 flex flex-col h-fit min-w-[200px] gap-3 p-3 rounded-md">
       <Uptime />
       <Stat
         title="Domains"
@@ -40,6 +42,7 @@ const Sidebar = () => {
           r: "Unhealthy routes (possibly down)",
         }}
       />
+      <Button icon={faGear} />
     </div>
   );
 };
