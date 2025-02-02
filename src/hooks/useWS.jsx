@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import useAuth from "./useAuth";
 import useToast from "../components/hooks/useToast";
 import useDomains from "./useDomains";
