@@ -2,32 +2,31 @@ import { createContext, useContext, useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
 import useAuth from "./useAuth";
 
-const HealthContext = createContext();
+const LogsContext = createContext();
 
-export const HealthProvider = ({ children }) => {
+export const LogsProvider = ({ children }) => {
   const { api } = useAxios();
   const { token } = useAuth();
 
-  const [health, setHealth] = useState(null);
+  const [logs, setLogs] = useState([]);
 
   useEffect(() => {
     if (!token) return;
     const subscribe = async () => {
-      const { data } = await api.get("/config/health/ws");
-      data?.health && setHealth(data.health);
+      api.get("/config/logs/ws");
     };
     subscribe();
   }, [token]);
 
   return (
-    <HealthContext.Provider value={{ health, mutate: setHealth }}>
+    <LogsContext.Provider value={{ logs, mutate: setLogs }}>
       {children}
-    </HealthContext.Provider>
+    </LogsContext.Provider>
   );
 };
 
-const useHealth = () => {
-  const context = useContext(HealthContext);
+const useLogs = () => {
+  const context = useContext(LogsContext);
 
   if (!context) {
     throw new Error("useHealth must be used within a HealthProvider");
@@ -36,4 +35,4 @@ const useHealth = () => {
   return context;
 };
 
-export default useHealth;
+export default useLogs;

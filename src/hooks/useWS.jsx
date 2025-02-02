@@ -3,6 +3,7 @@ import useAuth from "./useAuth";
 import useToast from "../components/hooks/useToast";
 import useDomains from "./useDomains";
 import useHealth from "./useHealth";
+import useLogs from "./useLogs";
 
 const WSContext = createContext();
 
@@ -11,6 +12,7 @@ export const WSProvider = ({ children }) => {
   const { toastInfo } = useToast();
   const { mutate: mutateDomains } = useDomains();
   const { mutate: mutateHealth } = useHealth();
+  const { mutate: mutateLogs } = useLogs();
 
   const wsRef = useRef(null);
   const [isConnected, setIsConnected] = useState(false);
@@ -45,6 +47,8 @@ export const WSProvider = ({ children }) => {
         const data = JSON.parse(event.data);
         if (data.type === "config") mutateDomains(data.config, false);
         if (data.type === "health") mutateHealth(data.health);
+        if (data.type === "log") mutateLogs((prev) => [...prev, data.log]);
+        console.log(data);
       };
     };
 

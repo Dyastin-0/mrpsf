@@ -8,21 +8,24 @@ import { AuthProvider } from "./hooks/useAuth.jsx";
 import { DomainsProvider } from "./hooks/useDomains.jsx";
 import { WSProvider } from "./hooks/useWS.jsx";
 import { HealthProvider } from "./hooks/useHealth.jsx";
+import { LogsProvider } from "./hooks/useLogs.jsx";
 
 createRoot(document.getElementById("root")).render(
   <ToastProvider>
     <AuthProvider>
-      <DomainsProvider>
-        <HealthProvider>
-          <WSProvider>
-            <ModalProvider>
-              <BrowserRouter>
-                <App />
-              </BrowserRouter>
-            </ModalProvider>
-          </WSProvider>
-        </HealthProvider>
-      </DomainsProvider>
+      <LogsProvider>
+        <DomainsProvider>
+          <HealthProvider>
+            <WSProvider>
+              <ModalProvider>
+                <BrowserRouter>
+                  <App />
+                </BrowserRouter>
+              </ModalProvider>
+            </WSProvider>
+          </HealthProvider>
+        </DomainsProvider>
+      </LogsProvider>
     </AuthProvider>
   </ToastProvider>
 );
