@@ -15,7 +15,7 @@ const Signin = () => {
     <div
       className="flex flex-col justify-center items-center
       w-[calc(100%-1.5rem)] h-[calc(100%-.75rem)]
-      mx-3 mb-3
+      mx-3 mb-3 p-3
       bg-primary text-sm rounded-md"
     >
       <SigninForm />

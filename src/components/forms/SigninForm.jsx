@@ -30,7 +30,7 @@ const SigninForm = ({}) => {
     e.preventDefault();
     if (email && password) {
       const { data } = await axios.post("/auth", { email, password });
-      setToken(data.accessToken);
+      setToken(data);
     }
   };
 

@@ -81,7 +81,7 @@ body {
 #root {
   position: relative;
   display: flex;
-  justify-items: center;
+  align-items: center;
   flex: 1;
   flex-direction: column;
   max-width: 1500px;

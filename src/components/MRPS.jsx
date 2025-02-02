@@ -8,8 +8,8 @@ const MRPS = () => {
       to="/"
     >
       <div className="flex justify-center items-center h-full font-semibold">
-        <h1 className="text-sm text-primary-highlight">mr</h1>
-        <h1 className="text-sm text-primary-foreground">ps</h1>
+        <h1 className="text-primary-highlight">mr</h1>
+        <h1 className="text-primary-foreground">ps</h1>
       </div>
     </Link>
   );

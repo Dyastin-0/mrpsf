@@ -19,9 +19,9 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <div className="relative w-full h-full justify-center flex flex-1">
+      <div className="relative max-w-[1300px] w-full h-full justify-center flex flex-1">
         {token && <Sidebar />}
-        <div className="max-w-[1100px]">
+        <div className="w-full">
           <Suspense>
             <Routes>
               <Route path="/sign-in" element={<Signin />} />

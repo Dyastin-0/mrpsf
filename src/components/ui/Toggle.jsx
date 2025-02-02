@@ -6,7 +6,7 @@ const Toggle = ({ value, onClick }) => {
   return (
     <div
       className={clsx(
-        "relative flex items-center w-8 h-4 rounded-full cursor-pointer",
+        "relative flex items-center min-w-8 h-4 rounded-full cursor-pointer",
         "border border-secondary-accent transition-colors duration-300",
         value ? "bg-primary-highlight" : "bg-primary"
       )}
@@ -14,14 +14,14 @@ const Toggle = ({ value, onClick }) => {
     >
       <motion.div
         className={clsx(
-          "absolute w-3 h-3 rounded-full",
+          "absolute w-[.75rem] h-[.75rem] rounded-full",
           value ? "bg-primary" : "bg-primary-highlight"
         )}
         initial={{
-          x: value ? 17 : 2,
+          x: value ? 16 : 3,
         }}
         animate={{
-          x: value ? 17 : 2,
+          x: value ? 16 : 3,
         }}
         transition={{
           type: "spring",
