@@ -25,11 +25,22 @@ const Log = ({ log }) => {
             <span className="text-blue w-fit">{key}=</span>
             <span
               className={clsx(
-                colors[value] || "text-primary-foreground",
+                colors[value] || colors[key] || "text-primary-foreground",
                 "font-semibold w-fit"
               )}
             >
-              {value}
+              {key === "time"
+                ? new Date(value)
+                    .toLocaleString("en-US", {
+                      month: "short",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                      hour12: false,
+                    })
+                    .replace(",", "")
+                : value}
             </span>{" "}
           </div>
         );

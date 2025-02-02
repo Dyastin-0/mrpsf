@@ -11,7 +11,7 @@ const Logs = () => {
       className="flex w-[calc(100%-.75rem)] h-[calc(100%-.75rem)] justify-center bg-primary text-primary-foreground rounded-md p-3
       mr-3 mb-3 overflow-y-auto font-mono"
     >
-      <div className="flex flex-col w-full h-fit gap-3">
+      <div className="flex flex-col w-full h-fit">
         {logs.length > 0 &&
           logs.map((log, index) => <Log log={log} key={index} />)}
       </div>
