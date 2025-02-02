@@ -9,9 +9,20 @@ const Log = ({ log }) => {
   return (
     <div className="flex flex-wrap gap-2 text-sm">
       {Object.entries(parsed).map(([key, value], index) => {
-        return (
+        return key === "level" ? (
           <div key={index} className="flex">
-            <span className="text-primary-foreground w-fit">{key}=</span>
+            <span
+              className={clsx(
+                colors[value] || "text-primary-foreground",
+                "font-semibold w-fit"
+              )}
+            >
+              {value}
+            </span>{" "}
+          </div>
+        ) : (
+          <div key={index} className="flex">
+            <span className="text-blue w-fit">{key}=</span>
             <span
               className={clsx(
                 colors[value] || "text-primary-foreground",
