@@ -1,9 +1,15 @@
+import { faTerminal } from "@fortawesome/free-solid-svg-icons";
 import useDomains from "../hooks/useDomains";
 import useHealth from "../hooks/useHealth";
 import Stat from "./Stat";
+import Button from "./ui/Button";
 import Uptime from "./Uptime";
+import useModal from "./hooks/useModal";
+import Terminal from "./Terminal";
+import Separator from "./ui/Separator";
 
 const Sidebar = () => {
+  const { setModal, setOpen } = useModal();
   const { domains } = useDomains();
   const { health } = useHealth();
 
@@ -20,7 +26,7 @@ const Sidebar = () => {
   );
 
   return (
-    <div className="sticky top-0 flex flex-col h-fit min-w-[200px] gap-3 p-3 rounded-md">
+    <div className="sticky top-0 flex flex-col items-end h-fit min-w-[200px] gap-3 p-3 rounded-md">
       <Uptime />
       <Stat
         title="Domains"
@@ -38,6 +44,15 @@ const Sidebar = () => {
         tooltip={{
           g: "Healthy routes",
           r: "Unhealthy routes (possibly down)",
+        }}
+      />
+      <Separator />
+      <Button
+        icon={faTerminal}
+        className="w-fit bg-[var(--bg-primary)]"
+        onClick={() => {
+          setModal(<Terminal />);
+          setOpen(true);
         }}
       />
     </div>

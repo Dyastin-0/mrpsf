@@ -10,8 +10,8 @@ const GenericModal = ({ title, children, className, containerClassName }) => {
   return (
     <div
       className={clsx(
-        "relative flex flex-col h-[75vh] w-[400px] max-w-full p-3 gap-3 rounded-md bg-primary",
-        "text-sm text-primary-foreground border border-secondary-accent overflow-hidden z-50",
+        "relative flex flex-col h-[75vh] w-[400px] max-w-full p-4 gap-4 rounded-md bg-primary",
+        "text-xs text-primary-foreground border border-secondary-accent overflow-hidden z-50",
         className
       )}
     >

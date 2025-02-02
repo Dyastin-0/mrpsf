@@ -4,9 +4,5 @@ export const routes = [
     path: "/proxies",
     name: "Proxies",
   },
-  {
-    path: "/logs",
-    name: "Logs",
-  },
 ];
 export const authRoutes = [{ path: "/sign-in", name: "Sign in" }];

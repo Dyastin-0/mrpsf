@@ -4,7 +4,7 @@ import TruncatedText from "./ui/TruncatedText";
 
 const Stat = ({ title, count, length, tooltip }) => {
   return (
-    <div className="flex justify-between gap-2">
+    <div className="flex w-full justify-between gap-2">
       <div className="flex justify-between gap-2">
         <TruncatedText text={title} className="text-xs font-semibold" />
       </div>
