@@ -3,26 +3,22 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import Button from "./ui/Button";
-import { Dropdown, DropdownItem } from "./ui/Dropdown";
 import useThemeToggle from "../hooks/useTheme";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faGear,
-  faSignOut,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { routes, authRoutes } from "../helpers/routes";
 import Link from "./ui/Link";
-import { Link as DomLink } from "react-router-dom";
 import MRPS from "./MRPS";
 import useViewport from "../hooks/useViewport";
 import Tooltip from "./ui/Tooltip";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import useModal from "./hooks/useModal";
+import Terminal from "./modals/Terminal";
 
 const Navbar = ({ toggleSideNavbar }) => {
   const navigate = useNavigate();
+  const { setModal, setOpen } = useModal();
   const { toggleTheme, icon } = useThemeToggle();
   const { setToken, token } = useAuth();
   const { viewWidth } = useViewport();
@@ -83,6 +79,18 @@ const Navbar = ({ toggleSideNavbar }) => {
               <Link path={route.path} name={route.name} icon={route.icon} />
             </Tooltip>
           ))}
+        {token && (
+          <Tooltip text="mrps logs">
+            <Button
+              text="Logs"
+              variant="default_rounded"
+              onClick={() => {
+                setModal(<Terminal />);
+                setOpen(true);
+              }}
+            />
+          </Tooltip>
+        )}
       </div>
       <div className="flex w-fit gap-1 justify-center items-center">
         <Tooltip>

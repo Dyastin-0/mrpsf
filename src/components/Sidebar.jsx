@@ -1,16 +1,11 @@
-import { faTerminal } from "@fortawesome/free-solid-svg-icons";
 import useDomains from "../hooks/useDomains";
 import useHealth from "../hooks/useHealth";
 import Stat from "./Stat";
-import Button from "./ui/Button";
 import Uptime from "./Uptime";
 import useModal from "./hooks/useModal";
-import Terminal from "./modals/Terminal";
 import Separator from "./ui/Separator";
-import Tooltip from "./ui/Tooltip";
 
 const Sidebar = () => {
-  const { setModal, setOpen } = useModal();
   const { domains } = useDomains();
   const { health } = useHealth();
 
@@ -48,16 +43,6 @@ const Sidebar = () => {
         }}
       />
       <Separator />
-      <Tooltip text="mrps logs">
-        <Button
-          icon={faTerminal}
-          className="w-fit bg-[var(--bg-primary)]"
-          onClick={() => {
-            setModal(<Terminal />);
-            setOpen(true);
-          }}
-        />
-      </Tooltip>
     </div>
   );
 };
