@@ -7,7 +7,7 @@ const Logs = () => {
   return (
     <div
       className="flex flex-col w-[700px] max-w-fit max-h-[450px] overflow-y-auto font-mono gap-3
-    scrollbar-thin scrollbar-track-transparent scrollbar-thumb-primary-highlight"
+    custom-scrollbar"
     >
       {logs.length > 0 &&
         logs.map((log, index) => <Log log={log} key={index} />)}
