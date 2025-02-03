@@ -6,7 +6,7 @@ import clsx from "clsx";
 const Log = ({ log }) => {
   const parsed = parseJSON(log);
 
-  console.log(log);
+  if (parsed["error"] == "Invalid log format") return;
 
   return (
     <div className="flex flex-wrap gap-2 text-sm">
