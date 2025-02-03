@@ -22,8 +22,9 @@ const Log = ({ log }) => {
           <div
             key={index}
             className={clsx(
-              (key === "time" && "order-first") ||
-                (key === "message" && "order-3")
+              "time",
+              key === "time" && "order-first",
+              key === "message" && "order-3"
             )}
           >
             {" "}
