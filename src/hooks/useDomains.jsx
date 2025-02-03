@@ -19,7 +19,6 @@ export const DomainsProvider = ({ children }) => {
     },
     {
       revalidateOnFocus: false,
-      revalidateOnMount: false,
       revalidateOnReconnect: false,
     }
   );
