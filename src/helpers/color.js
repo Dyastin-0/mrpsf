@@ -9,8 +9,8 @@ export const colors = {
   301: "text-yellow-500",
   307: "text-yellow-500",
   308: "text-yellow-500",
-  400: "text-red",
-  401: "text-red",
-  404: "text-red",
-  403: "text-red",
+  400: "text-red-900",
+  401: "text-red-900",
+  404: "text-red-900",
+  403: "text-red-900",
 };
