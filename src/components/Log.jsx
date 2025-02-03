@@ -23,7 +23,7 @@ const Log = ({ log }) => {
             key={index}
             className={clsx(
               (key === "time" && "order-first") ||
-                (key === "message" && "order-[-1]")
+                (key === "message" && "order-3")
             )}
           >
             {" "}
