@@ -5,6 +5,7 @@ export const colors = {
   warn: "text-yellow-600",
   time: "text-gray-600",
   200: "text-green-500",
+  202: "text-green-500",
   201: "text-green-500",
   301: "text-yellow-500",
   307: "text-yellow-500",
