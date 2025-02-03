@@ -5,8 +5,9 @@ import Stat from "./Stat";
 import Button from "./ui/Button";
 import Uptime from "./Uptime";
 import useModal from "./hooks/useModal";
-import Terminal from "./Terminal";
+import Terminal from "./modals/Terminal";
 import Separator from "./ui/Separator";
+import Tooltip from "./ui/Tooltip";
 
 const Sidebar = () => {
   const { setModal, setOpen } = useModal();
@@ -47,14 +48,16 @@ const Sidebar = () => {
         }}
       />
       <Separator />
-      <Button
-        icon={faTerminal}
-        className="w-fit bg-[var(--bg-primary)]"
-        onClick={() => {
-          setModal(<Terminal />);
-          setOpen(true);
-        }}
-      />
+      <Tooltip text="mrps logs">
+        <Button
+          icon={faTerminal}
+          className="w-fit bg-[var(--bg-primary)]"
+          onClick={() => {
+            setModal(<Terminal />);
+            setOpen(true);
+          }}
+        />
+      </Tooltip>
     </div>
   );
 };

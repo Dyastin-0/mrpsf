@@ -3,6 +3,13 @@ import { colors } from "../helpers/color";
 import { parseJSON } from "../helpers/parse";
 import clsx from "clsx";
 
+const format = {
+  error: "ERR",
+  info: "INF",
+  warn: "WRN",
+  fatal: "FTL",
+};
+
 const Log = ({ log }) => {
   const parsed = parseJSON(log);
 
@@ -11,15 +18,26 @@ const Log = ({ log }) => {
   return (
     <div className="flex flex-wrap gap-2 text-sm">
       {Object.entries(parsed).map(([key, value], index) => {
-        return key === "level" ? (
-          <div key={index} className="flex">
+        return key === "level" || key === "time" ? (
+          <div key={index} className={clsx(key === "time" && "order-first")}>
+            {" "}
             <span
               className={clsx(
-                colors[value] || "text-primary-foreground",
+                colors[value] || colors[key] || "text-primary-foreground",
                 "font-semibold w-fit"
               )}
             >
-              {value}
+              {key === "time"
+                ? new Date(value)
+                    .toLocaleString("en-US", {
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                      hour12: false,
+                    })
+                    .replace(",", "")
+                : format[value]}
             </span>{" "}
           </div>
         ) : (
@@ -31,18 +49,7 @@ const Log = ({ log }) => {
                 "font-semibold w-fit"
               )}
             >
-              {key === "time"
-                ? new Date(value)
-                    .toLocaleString("en-US", {
-                      month: "short",
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      second: "2-digit",
-                      hour12: false,
-                    })
-                    .replace(",", "")
-                : value}
+              {value}
             </span>{" "}
           </div>
         );

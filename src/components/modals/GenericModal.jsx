@@ -3,8 +3,15 @@ import useModal from "../hooks/useModal";
 import Button from "../ui/Button";
 import TruncatedText from "../ui/TruncatedText";
 import clsx from "clsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const GenericModal = ({ title, children, className, containerClassName }) => {
+const GenericModal = ({
+  title,
+  icon,
+  children,
+  className,
+  containerClassName,
+}) => {
   const { setOpen } = useModal();
 
   return (
@@ -16,15 +23,16 @@ const GenericModal = ({ title, children, className, containerClassName }) => {
       )}
     >
       <div className="flex items-end font-semibold gap-2 text-sm">
-        <div className="flex-1 min-w-0">
+        <div className="flex items-center flex-1 gap-1 min-w-0">
+          {icon && <FontAwesomeIcon icon={icon} />}
           <TruncatedText text={title} />
         </div>
-        <Button
+        {/* <Button
           icon={faX}
           onClick={() => setOpen(false)}
           variant="ghost"
-          className="w-fit"
-        />
+          className="w-fit absolute top-4 right-4"
+        /> */}
       </div>
 
       <div
