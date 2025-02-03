@@ -11,10 +11,18 @@ export const DomainsProvider = ({ children }) => {
     data: domains,
     error,
     mutate,
-  } = useSWR(isAxiosReady ? "/config" : null, async () => {
-    const response = await api.get("/config");
-    return response.data;
-  });
+  } = useSWR(
+    isAxiosReady ? "/config" : null,
+    async () => {
+      const response = await api.get("/config");
+      return response.data;
+    },
+    {
+      revalidateOnFocus: false,
+      revalidateOnMount: false,
+      revalidateOnReconnect: false,
+    }
+  );
 
   return (
     <DomainsContext.Provider value={{ domains, mutate, error }}>
