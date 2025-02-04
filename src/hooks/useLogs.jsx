@@ -13,7 +13,7 @@ export const LogsProvider = ({ children }) => {
   useEffect(() => {
     if (!token) return;
     const subscribe = async () => {
-      api.get("/config/logs/ws");
+      api.get(`/config/logs/ws?t=${token}`);
     };
     subscribe();
   }, [token]);

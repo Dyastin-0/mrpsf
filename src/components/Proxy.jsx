@@ -4,13 +4,15 @@ import RateLimiter from "./RateLimiter";
 import Routes from "./Routes";
 import Toggle from "./ui/Toggle";
 import TruncatedText from "./ui/TruncatedText";
+import useAuth from "../hooks/useAuth";
 
 const Proxy = ({ domain, config }) => {
   const { api } = useAxios();
+  const { token } = useAuth();
   const [enabled, setEnabled] = useState(config.Enabled);
 
   const handleEnabled = async () => {
-    const res = await api.post(`/config/${domain}/enabled`, {
+    const res = await api.post(`/config/${domain}/enabled?t=${token}`, {
       enabled: !enabled,
     });
 
