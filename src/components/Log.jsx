@@ -22,7 +22,10 @@ const Log = ({ log }) => {
           key === "level" ||
           key === "time" ||
           key === "message" ? (
-          <div key={index} className={clsx("order-first")}>
+          <div
+            key={index}
+            className={clsx(key === "message" ? "-order-2" : "order-first")}
+          >
             {" "}
             <span
               className={clsx(
