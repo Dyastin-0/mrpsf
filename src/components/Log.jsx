@@ -18,8 +18,11 @@ const Log = ({ log }) => {
   return (
     <div className="flex flex-wrap gap-2 text-sm">
       {Object.entries(parsed).map(([key, value], index) => {
-        return key === "level" || key === "time" ? (
-          <div key={index} className={clsx(key === "time" && "order-first")}>
+        return key === "level" ||
+          key === "level" ||
+          key === "time" ||
+          key === "message" ? (
+          <div key={index} className={clsx("order-first")}>
             {" "}
             <span
               className={clsx(
@@ -37,7 +40,7 @@ const Log = ({ log }) => {
                       hour12: false,
                     })
                     .replace(",", "")
-                : format[value]}
+                : format[value] || value}
             </span>{" "}
           </div>
         ) : (
