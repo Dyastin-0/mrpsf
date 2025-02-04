@@ -4,7 +4,11 @@ import GenericModal from "./GenericModal";
 
 const Terminal = () => {
   return (
-    <GenericModal icon={faTerminal} className="w-fit h-fit">
+    <GenericModal
+      icon={faTerminal}
+      className="w-fit h-fit"
+      containerClassName="flex gap-2"
+    >
       <Logs />
     </GenericModal>
   );

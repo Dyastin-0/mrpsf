@@ -1,6 +1,4 @@
-import { faX } from "@fortawesome/free-solid-svg-icons";
 import useModal from "../hooks/useModal";
-import Button from "../ui/Button";
 import TruncatedText from "../ui/TruncatedText";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,14 +33,7 @@ const GenericModal = ({
         /> */}
       </div>
 
-      <div
-        className={
-          "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black" +
-          containerClassName
-        }
-      >
-        {children}
-      </div>
+      <div className={containerClassName}>{children}</div>
     </div>
   );
 };
