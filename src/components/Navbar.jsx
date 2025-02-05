@@ -55,14 +55,7 @@ const Navbar = ({ toggleSideNavbar }) => {
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
     >
       <div className="flex justify-center items-center gap-2">
-        {viewWidth <= 768 && (
-          <FontAwesomeIcon
-            icon={faBars}
-            onClick={toggleSideNavbar}
-            className="hover:cursor-pointer"
-          />
-        )}
-        {viewWidth > 768 && <MRPS />}
+        <MRPS />
       </div>
       <div className="flex w-full justify-center items-center gap-1">
         {token &&
