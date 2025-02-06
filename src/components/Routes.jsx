@@ -10,13 +10,13 @@ const Routes = ({ routes }) => {
       <h3 className="text-xs font-semibold">Routes</h3>
       {Object.entries(routes).map(([path, routeConfig]) => (
         <div key={path} className="flex gap-2 items-center">
-          <Dot value={health && health[routeConfig.Dest]} />
+          <Dot value={health && health[routeConfig.Dest[0]]} />
           <TruncatedText
             text={path}
             className="text-xs text-primary-highlight font-semibold"
           />
           <TruncatedText
-            text={routeConfig.Dest}
+            text={routeConfig.Dest[0]}
             className="text-xs font-semibold"
           />
           {routeConfig.RewriteRule.Type !== "" && (
@@ -48,6 +48,7 @@ const Routes = ({ routes }) => {
               className="text-xs font-semibold text-primary-highlight"
             />
           )}
+          h<h3 className="text-xs font-semibold">Balancer</h3>
         </div>
       ))}
     </>
