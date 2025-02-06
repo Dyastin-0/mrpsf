@@ -15,6 +15,7 @@ export const DomainsProvider = ({ children }) => {
     isAxiosReady ? "/config" : null,
     async () => {
       const response = await api.get("/config");
+      console.log(response);
       return response.data;
     },
     {

@@ -9,46 +9,63 @@ const Routes = ({ routes }) => {
     <>
       <h3 className="text-xs font-semibold">Routes</h3>
       {Object.entries(routes).map(([path, routeConfig]) => (
-        <div key={path} className="flex gap-2 items-center">
-          <Dot value={health && health[routeConfig.Dest[0]]} />
-          <TruncatedText
-            text={path}
-            className="text-xs text-primary-highlight font-semibold"
-          />
-          <TruncatedText
-            text={routeConfig.Dest[0]}
-            className="text-xs font-semibold"
-          />
-          {routeConfig.RewriteRule.Type !== "" && (
-            <TruncatedText
-              text={routeConfig.RewriteRule.Value}
-              className="text-xs font-semibold"
+        <div key={path} className="flex flex-col gap-2 items-center">
+          <div className="flex w-full items-center gap-2">
+            <Dot
+              value={health && health[routeConfig.Balancer?.Dests[0]?.URL]}
             />
-          )}
-          {routeConfig.RewriteRule.Type === "regex" ? (
-            <TruncatedText
-              text={applyRegex(
-                path,
-                routeConfig.RewriteRule.Value,
-                routeConfig.RewriteRule.ReplaceVal
-              )}
-              className="text-xs text-primary-highlight font-semibold"
-            />
-          ) : routeConfig.RewriteRule.Type === "prefix" ? (
-            <TruncatedText
-              text={path.replace(
-                routeConfig.RewriteRule.Value,
-                routeConfig.RewriteRule.ReplaceVal
-              )}
-              className="text-xs text-primary-highlight font-semibold"
-            />
-          ) : (
             <TruncatedText
               text={path}
-              className="text-xs font-semibold text-primary-highlight"
+              className="text-xs text-primary-highlight font-semibold"
             />
+            <TruncatedText
+              text={routeConfig.Balancer?.Dests[0]?.URL}
+              className="text-xs font-semibold"
+            />
+            {routeConfig.RewriteRule.Type !== "" && (
+              <TruncatedText
+                text={routeConfig.RewriteRule.Value}
+                className="text-xs font-semibold"
+              />
+            )}
+            {routeConfig.RewriteRule.Type === "regex" ? (
+              <TruncatedText
+                text={applyRegex(
+                  path,
+                  routeConfig.RewriteRule.Value,
+                  routeConfig.RewriteRule.ReplaceVal
+                )}
+                className="text-xs text-primary-highlight font-semibold"
+              />
+            ) : routeConfig.RewriteRule.Type === "prefix" ? (
+              <TruncatedText
+                text={path.replace(
+                  routeConfig.RewriteRule.Value,
+                  routeConfig.RewriteRule.ReplaceVal
+                )}
+                className="text-xs text-primary-highlight font-semibold"
+              />
+            ) : (
+              <TruncatedText
+                text={path}
+                className="text-xs font-semibold text-primary-highlight"
+              />
+            )}
+          </div>
+          {routeConfig.Balancer.Dests.length > 1 && (
+            <div className="flex flex-col w-full gap-2 ml-8">
+              <h3 className="text-xs font-semibold">Balancer</h3>
+              {routeConfig.Balancer.Dests.map((dest, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <Dot value={dest.Alive} />
+                  <TruncatedText
+                    text={dest.URL}
+                    className="text-xs font-semibold"
+                  />
+                </div>
+              ))}
+            </div>
           )}
-          h<h3 className="text-xs font-semibold">Balancer</h3>
         </div>
       ))}
     </>
