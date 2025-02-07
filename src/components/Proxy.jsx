@@ -5,6 +5,7 @@ import Routes from "./Routes";
 import Toggle from "./ui/Toggle";
 import TruncatedText from "./ui/TruncatedText";
 import useAuth from "../hooks/useAuth";
+import { Dot } from "./ui/Dot";
 
 const Proxy = ({ domain, config }) => {
   const { api } = useAxios();
@@ -27,9 +28,7 @@ const Proxy = ({ domain, config }) => {
         <TruncatedText text={domain} className="text-sm font-semibold" />
         <Toggle value={enabled} onClick={handleEnabled} />
       </div>
-      <span
-        className={`rounded-full w-2 h-2 ${enabled ? "bg-green" : "bg-red"}`}
-      />
+      <Dot value={enabled} />
       {config.RateLimit && <RateLimiter limiter={config.RateLimit} />}
       <Routes routes={config.Routes} />
     </div>
