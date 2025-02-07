@@ -65,7 +65,7 @@ const Sidebar = () => {
   return (
     <div
       className={clsx(
-        "sticky top-0 flex flex-col items-end h-fit gap-5 p-3 rounded-md overflow-hidden",
+        "sticky top-0 flex flex-col items-end h-fit gap-3 p-3 rounded-md overflow-hidden",
         viewWidth > 600 ? "min-w-[200px]" : "min-w-[50px]"
       )}
     >
