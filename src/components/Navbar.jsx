@@ -58,13 +58,25 @@ const Navbar = ({ toggleSideNavbar }) => {
         <MRPS />
       </div>
       <div className="flex w-full justify-center items-center gap-1">
-        {token &&
-          viewWidth > 768 &&
-          routes.map((route, index) => (
-            <Tooltip key={index} text={route.name}>
-              <Link path={route.path} name={route.name} />
+        {token && viewWidth > 768 && (
+          <>
+            {routes.map((route, index) => (
+              <Tooltip key={index} text={route.name}>
+                <Link path={route.path} name={route.name} />
+              </Tooltip>
+            ))}
+            <Tooltip text="mrps logs">
+              <Button
+                text="Logs"
+                variant="default_rounded"
+                onClick={() => {
+                  setModal(<Terminal />);
+                  setOpen(true);
+                }}
+              />
             </Tooltip>
-          ))}
+          </>
+        )}
         {!token &&
           viewWidth > 768 &&
           authRoutes.map((route, index) => (
@@ -72,18 +84,6 @@ const Navbar = ({ toggleSideNavbar }) => {
               <Link path={route.path} name={route.name} icon={route.icon} />
             </Tooltip>
           ))}
-        {token && (
-          <Tooltip text="mrps logs">
-            <Button
-              text="Logs"
-              variant="default_rounded"
-              onClick={() => {
-                setModal(<Terminal />);
-                setOpen(true);
-              }}
-            />
-          </Tooltip>
-        )}
       </div>
       <div className="flex w-fit gap-1 justify-center items-center">
         <Tooltip>

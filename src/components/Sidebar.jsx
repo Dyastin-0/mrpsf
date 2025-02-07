@@ -6,15 +6,25 @@ import Stat from "./Stat";
 import Uptime from "./Uptime";
 import Separator from "./ui/Separator";
 import Button from "./ui/Button";
-import { faClock, faGlobe, faRoute } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleNodes,
+  faClock,
+  faDashboard,
+  faGlobe,
+  faRoute,
+  faTerminal,
+} from "@fortawesome/free-solid-svg-icons";
 import useModal from "./hooks/useModal";
 import StatsModal from "./modals/StatsModal";
+import { useNavigate } from "react-router-dom";
+import Terminal from "./modals/Terminal";
 
 const Sidebar = () => {
   const { domains } = useDomains();
   const { health } = useHealth();
   const { viewWidth } = useViewport();
   const { setModal, setOpen } = useModal();
+  const navigate = useNavigate();
 
   const domainEntries = Object.entries(domains || {});
   const healthEntries = Object.entries(health || {});
@@ -82,6 +92,16 @@ const Sidebar = () => {
               setOpen(true);
             }}
           />
+          <Separator />
+          <Button icon={faCircleNodes} onClick={() => navigate("/proxies")} />
+          <Button icon={faDashboard} onClick={() => navigate("/dashboard")} />
+          <Button
+            icon={faTerminal}
+            onClick={() => {
+              setModal(<Terminal />);
+              setOpen(true);
+            }}
+          />
         </>
       ) : (
         <>
@@ -90,7 +110,6 @@ const Sidebar = () => {
           <Routes />
         </>
       )}
-      <Separator />
     </div>
   );
 };
