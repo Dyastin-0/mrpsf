@@ -48,7 +48,6 @@ export const WSProvider = ({ children }) => {
         if (data.type === "config") mutateDomains(data.config, false);
         if (data.type === "health") mutateHealth(data.health);
         if (data.type === "log") mutateLogs((prev) => [...prev, data.log]);
-        console.log(data);
       };
     };
 
