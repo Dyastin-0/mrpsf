@@ -2,7 +2,7 @@ import useHealth from "../hooks/useHealth";
 import { Dot } from "./ui/Dot";
 import TruncatedText from "./ui/TruncatedText";
 
-const Routes = ({ routes }) => {
+const Routes = ({ routes, domain }) => {
   const { health } = useHealth();
 
   return (
@@ -12,7 +12,9 @@ const Routes = ({ routes }) => {
         <div key={path} className="flex flex-col gap-2 items-center">
           <div className="flex w-full items-center gap-2">
             <Dot
-              value={health && health[routeConfig.Balancer?.Dests[0]?.URL]}
+              value={
+                health && health[domain][routeConfig.Balancer.Dests[0].URL]
+              }
             />
             <TruncatedText
               text={path}

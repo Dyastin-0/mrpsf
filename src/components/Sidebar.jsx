@@ -27,17 +27,21 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const domainEntries = Object.entries(domains || {});
-  const healthEntries = Object.entries(health || {});
+  const healthEntries = Object.entries(health || {}).flatMap(
+    ([_, domainHealth]) => Object.entries(domainHealth)
+  );
 
   const enabledCount = domainEntries.reduce(
     (acc, [, domain]) => acc + (domain.Enabled ? 1 : 0),
     0
   );
-  const healthCount = healthEntries.reduce(
-    (acc, [, value]) => acc + (value ? 1 : 0),
+  const healthCount = Object.values(health || {}).reduce(
+    (acc, domainHealth) => {
+      console.log(domainHealth);
+      return acc + Object.values(domainHealth).filter((val) => val).length;
+    },
     0
   );
-
   const Domain = () => (
     <Stat
       title="Domains"
