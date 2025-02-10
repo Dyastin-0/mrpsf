@@ -16,7 +16,7 @@ const Log = ({ log }) => {
   if (parsed["error"] == "Invalid log format") return;
 
   return (
-    <div className="flex flex-wrap gap-2 text-sm">
+    <div className="flex flex-wrap gap-x-2 text-sm">
       {Object.entries(parsed).map(([key, value], index) => {
         return key === "level" ||
           key === "level" ||

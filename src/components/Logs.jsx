@@ -6,7 +6,7 @@ const Logs = () => {
   const { logs = [] } = useLogs();
 
   return (
-    <div className="w-[530px] h-[450px] overflow-y-auto font-mono gap-1 custom-scrollbar">
+    <div className="w-[700px] h-[450px] overflow-y-auto font-mono gap-1 custom-scrollbar">
       <Virtuoso
         followOutput
         className="custom-scrollbar"
