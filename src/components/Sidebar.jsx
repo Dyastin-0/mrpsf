@@ -37,7 +37,6 @@ const Sidebar = () => {
   );
   const healthCount = Object.values(health || {}).reduce(
     (acc, domainHealth) => {
-      console.log(domainHealth);
       return acc + Object.values(domainHealth).filter((val) => val).length;
     },
     0
