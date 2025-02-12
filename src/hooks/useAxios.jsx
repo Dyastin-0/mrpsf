@@ -19,40 +19,39 @@ const useAxios = () => {
   const [isAxiosReady, setIsAxiosReady] = useState(false);
 
   useEffect(() => {
-    if (token) {
-      const interceptor = api.interceptors.request.use(
-        async (config) => {
-          const decodedAccessToken = jwtDecode(token);
-          const isExpired =
-            dayjs.unix(decodedAccessToken.exp).diff(dayjs()) < 1;
+    if (!token) return;
 
-          if (!isExpired) {
-            setIsAxiosReady(true);
-            config.headers.Authorization = `Bearer ${token}`;
-            return config;
-          }
+    const interceptor = api.interceptors.request.use(
+      async (config) => {
+        const decodedAccessToken = jwtDecode(token);
+        const isExpired = dayjs.unix(decodedAccessToken.exp).diff(dayjs()) < 1;
 
-          if (!refreshTokenPromise) {
-            refreshTokenPromise = refreshAccessToken();
-          }
+        if (!isExpired) {
+          config.headers.Authorization = `Bearer ${token}`;
+          return config;
+        }
 
-          try {
-            const newToken = await refreshTokenPromise;
-            config.headers.Authorization = `Bearer ${newToken}`;
-            return config;
-          } catch (error) {
-            return Promise.reject(error);
-          } finally {
+        if (!refreshTokenPromise) {
+          refreshTokenPromise = refreshAccessToken().finally(() => {
             refreshTokenPromise = null;
-          }
-        },
-        (error) => Promise.reject(error)
-      );
+          });
+        }
 
-      setIsAxiosReady(true);
-      return () => api.interceptors.request.eject(interceptor);
-    }
-  }, [setToken, token]);
+        try {
+          const newToken = await refreshTokenPromise;
+          config.headers.Authorization = `Bearer ${newToken}`;
+          return config;
+        } catch (error) {
+          return Promise.reject(error);
+        }
+      },
+      (error) => Promise.reject(error)
+    );
+
+    setIsAxiosReady(true);
+
+    return () => api.interceptors.request.eject(interceptor);
+  }, [token]);
 
   const refreshAccessToken = async () => {
     try {
