@@ -59,7 +59,7 @@ const Routes = ({ routes, domain }) => {
               <h3 className="text-xs font-semibold">Balancer</h3>
               {routeConfig.Balancer.Dests.map((dest, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  <Dot value={health && health[dest]} />
+                  <Dot value={health && health[domain][dest.URL]} />
                   <TruncatedText
                     text={dest.URL}
                     className="text-xs font-semibold"
