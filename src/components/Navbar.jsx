@@ -9,17 +9,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faSignOut, faSync } from "@fortawesome/free-solid-svg-icons";
 import { routes, authRoutes } from "../helpers/routes";
 import Link from "./ui/Link";
-import MRPS from "./MRPS";
 import useViewport from "../hooks/useViewport";
 import Tooltip from "./ui/Tooltip";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import useModal from "./hooks/useModal";
+import useToast from "./hooks/useToast";
 import Terminal from "./modals/Terminal";
 import useAxios from "../hooks/useAxios";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { api } = useAxios();
+  const { toastInfo } = useToast();
   const { setModal, setOpen } = useModal();
   const { toggleTheme, icon } = useThemeToggle();
   const { setToken, token } = useAuth();
@@ -38,7 +39,7 @@ const Navbar = () => {
   };
 
   const handleSync = async () => {
-    api.post("/config/sync");
+    api.post("/config/sync").then(() => toastInfo("Config synced"));
   };
 
   useEffect(() => {
@@ -109,7 +110,11 @@ const Navbar = () => {
               className="order-first"
               text="Sync config with the .yaml file"
             >
-              <Button variant="default_rounded" icon={faSync} />
+              <Button
+                variant="default_rounded"
+                icon={faSync}
+                onClick={handleSync}
+              />
             </Tooltip>
             <Tooltip text="Sign out">
               <Button
