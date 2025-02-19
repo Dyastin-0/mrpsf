@@ -6,7 +6,7 @@ import Button from "./ui/Button";
 import useThemeToggle from "../hooks/useTheme";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSignOut, faSync } from "@fortawesome/free-solid-svg-icons";
 import { routes, authRoutes } from "../helpers/routes";
 import Link from "./ui/Link";
 import MRPS from "./MRPS";
@@ -15,9 +15,11 @@ import Tooltip from "./ui/Tooltip";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import useModal from "./hooks/useModal";
 import Terminal from "./modals/Terminal";
+import useAxios from "../hooks/useAxios";
 
-const Navbar = ({ toggleSideNavbar }) => {
+const Navbar = () => {
   const navigate = useNavigate();
+  const { api } = useAxios();
   const { setModal, setOpen } = useModal();
   const { toggleTheme, icon } = useThemeToggle();
   const { setToken, token } = useAuth();
@@ -33,6 +35,10 @@ const Navbar = ({ toggleSideNavbar }) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleSync = async () => {
+    api.post("/config/sync");
   };
 
   useEffect(() => {
@@ -98,13 +104,21 @@ const Navbar = ({ toggleSideNavbar }) => {
           />
         </Tooltip>
         {token && (
-          <Tooltip text="Sign out">
-            <Button
-              variant="default_rounded"
-              icon={faSignOut}
-              onClick={handleSignout}
-            />
-          </Tooltip>
+          <>
+            <Tooltip
+              className="order-first"
+              text="Sync config with the .yaml file"
+            >
+              <Button variant="default_rounded" icon={faSync} />
+            </Tooltip>
+            <Tooltip text="Sign out">
+              <Button
+                variant="default_rounded"
+                icon={faSignOut}
+                onClick={handleSignout}
+              />
+            </Tooltip>
+          </>
         )}
       </div>
     </motion.div>
