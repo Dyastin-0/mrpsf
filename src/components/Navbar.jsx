@@ -61,7 +61,7 @@ const Navbar = () => {
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
     >
       <div className="flex justify-center items-center gap-2">
-        <MRPS />
+        <img src="/favicon.ico" className="max-w-6 max-h-6 min-w-6 min-h-6" />
       </div>
       <div className="flex w-full justify-center items-center gap-1">
         {token && viewWidth > 768 && (
