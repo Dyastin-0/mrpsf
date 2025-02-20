@@ -10,8 +10,6 @@ const GenericModal = ({
   className,
   containerClassName,
 }) => {
-  const { setOpen } = useModal();
-
   return (
     <div
       className={clsx(
