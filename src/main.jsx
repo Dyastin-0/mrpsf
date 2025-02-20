@@ -9,6 +9,7 @@ import { DomainsProvider } from "./hooks/useDomains.jsx";
 import { WSProvider } from "./hooks/useWS.jsx";
 import { HealthProvider } from "./hooks/useHealth.jsx";
 import { LogsProvider } from "./hooks/useLogs.jsx";
+import { TerminalProvider } from "./hooks/useTerminal.jsx";
 
 createRoot(document.getElementById("root")).render(
   <ToastProvider>
@@ -16,13 +17,15 @@ createRoot(document.getElementById("root")).render(
       <LogsProvider>
         <DomainsProvider>
           <HealthProvider>
-            <WSProvider>
-              <ModalProvider>
-                <BrowserRouter>
-                  <App />
-                </BrowserRouter>
-              </ModalProvider>
-            </WSProvider>
+            <TerminalProvider>
+              <WSProvider>
+                <ModalProvider>
+                  <BrowserRouter>
+                    <App />
+                  </BrowserRouter>
+                </ModalProvider>
+              </WSProvider>
+            </TerminalProvider>
           </HealthProvider>
         </DomainsProvider>
       </LogsProvider>

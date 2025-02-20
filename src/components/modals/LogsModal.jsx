@@ -1,11 +1,11 @@
-import { faTerminal } from "@fortawesome/free-solid-svg-icons";
+import { faFileLines } from "@fortawesome/free-solid-svg-icons";
 import Logs from "../Logs";
 import GenericModal from "./GenericModal";
 
-const Terminal = () => {
+const LogsModal = () => {
   return (
     <GenericModal
-      icon={faTerminal}
+      icon={faFileLines}
       className="w-fit h-fit"
       containerClassName="flex gap-2"
     >
@@ -14,4 +14,4 @@ const Terminal = () => {
   );
 };
 
-export default Terminal;
+export default LogsModal;

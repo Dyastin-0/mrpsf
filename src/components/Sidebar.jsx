@@ -12,12 +12,12 @@ import {
   faDashboard,
   faGlobe,
   faRoute,
-  faTerminal,
+  faFileLines,
 } from "@fortawesome/free-solid-svg-icons";
 import useModal from "./hooks/useModal";
 import StatsModal from "./modals/StatsModal";
 import { useNavigate } from "react-router-dom";
-import Terminal from "./modals/Terminal";
+import LogsModal from "./modals/LogsModal";
 
 const Sidebar = () => {
   const { domains } = useDomains();
@@ -69,10 +69,10 @@ const Sidebar = () => {
     <div
       className={clsx(
         "sticky top-0 flex flex-col items-end h-fit gap-3 p-3 rounded-md overflow-hidden",
-        viewWidth > 600 ? "min-w-[200px]" : "min-w-[50px]"
+        viewWidth > 768 ? "min-w-[200px]" : "min-w-[50px]"
       )}
     >
-      {viewWidth < 600 ? (
+      {viewWidth < 768 ? (
         <>
           <Button
             icon={faClock}
@@ -96,12 +96,12 @@ const Sidebar = () => {
             }}
           />
           <Separator />
-          <Button icon={faCircleNodes} onClick={() => navigate("/proxies")} />
           <Button icon={faDashboard} onClick={() => navigate("/dashboard")} />
+          <Button icon={faCircleNodes} onClick={() => navigate("/proxies")} />
           <Button
-            icon={faTerminal}
+            icon={faFileLines}
             onClick={() => {
-              setModal(<Terminal />);
+              setModal(<LogsModal />);
               setOpen(true);
             }}
           />

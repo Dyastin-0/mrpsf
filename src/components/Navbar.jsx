@@ -5,7 +5,11 @@ import axios from "axios";
 import Button from "./ui/Button";
 import useThemeToggle from "../hooks/useTheme";
 import { motion } from "framer-motion";
-import { faSignOut, faSync } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignOut,
+  faSync,
+  faTerminal,
+} from "@fortawesome/free-solid-svg-icons";
 import { routes, authRoutes } from "../helpers/routes";
 import Link from "./ui/Link";
 import useViewport from "../hooks/useViewport";
@@ -13,8 +17,9 @@ import Tooltip from "./ui/Tooltip";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import useModal from "./hooks/useModal";
 import useToast from "./hooks/useToast";
-import Terminal from "./modals/Terminal";
+import LogsModal from "./modals/LogsModal";
 import useAxios from "../hooks/useAxios";
+import { TerminalModal } from "./modals/TerminalModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -76,7 +81,17 @@ const Navbar = () => {
                 text="Logs"
                 variant="default_rounded"
                 onClick={() => {
-                  setModal(<Terminal />);
+                  setModal(<LogsModal />);
+                  setOpen(true);
+                }}
+              />
+            </Tooltip>
+            <Tooltip text="Sync config with the .yaml file">
+              <Button
+                variant="default_rounded"
+                text="Terminal"
+                onClick={() => {
+                  setModal(<TerminalModal />);
                   setOpen(true);
                 }}
               />
