@@ -13,11 +13,13 @@ import {
   faGlobe,
   faRoute,
   faFileLines,
+  faTerminal,
 } from "@fortawesome/free-solid-svg-icons";
 import useModal from "./hooks/useModal";
 import StatsModal from "./modals/StatsModal";
 import { useNavigate } from "react-router-dom";
 import LogsModal from "./modals/LogsModal";
+import { TerminalModal } from "./modals/TerminalModal";
 
 const Sidebar = () => {
   const { domains } = useDomains();
@@ -98,10 +100,18 @@ const Sidebar = () => {
           <Separator />
           <Button icon={faDashboard} onClick={() => navigate("/dashboard")} />
           <Button icon={faCircleNodes} onClick={() => navigate("/proxies")} />
+          <Separator />
           <Button
             icon={faFileLines}
             onClick={() => {
               setModal(<LogsModal />);
+              setOpen(true);
+            }}
+          />
+          <Button
+            icon={faTerminal}
+            onClick={() => {
+              setModal(<TerminalModal />);
               setOpen(true);
             }}
           />
