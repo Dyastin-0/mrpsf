@@ -5,8 +5,10 @@ import "xterm/css/xterm.css";
 import useWS from "../hooks/useWS";
 import useAxios from "../hooks/useAxios";
 import useToast from "./hooks/useToast";
+import useAuth from "../hooks/useAuth";
 
 const XTerm = () => {
+  const { token } = useAuth();
   const { api, isAxiosReady } = useAxios();
   const { toastInfo } = useToast();
   const terminalRef = useRef(null);
@@ -45,7 +47,7 @@ const XTerm = () => {
       term.current.dispose();
       setTerminalCallback(null);
     };
-  }, [sendMessage, setTerminalCallback]);
+  }, [sendMessage, setTerminalCallback, token]);
 
   const handleConnectTerminal = async () => {
     try {
