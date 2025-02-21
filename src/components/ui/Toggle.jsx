@@ -15,7 +15,7 @@ const Toggle = ({ value, onClick }) => {
       <motion.div
         className={clsx(
           "absolute w-[.75rem] h-[.75rem] rounded-full",
-          value ? "bg-primary" : "bg-primary-highlight"
+          value ? "bg-primary" : "bg-secondary-highlight"
         )}
         initial={{
           x: value ? 16 : 3,
