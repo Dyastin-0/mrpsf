@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
-import MRPS from "../MRPS";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
@@ -41,7 +40,7 @@ const SigninForm = ({}) => {
     >
       <div className="flex gap-1 justify-center items-center text-lg font-semibold">
         <span>Sign in to</span>
-        <MRPS />
+        <img src="/favicon.ico" className="w-6 h-6" />
       </div>
       <Input
         placeholder="email"

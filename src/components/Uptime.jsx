@@ -43,7 +43,7 @@ const Uptime = () => {
       <h1 className="text-xs font-semibold">Uptime</h1>
       <div className="flex font-semibold gap-1">
         {elapsed.hours > 0 && (
-          <span className="text-sm text-semibold">{elapsed.hours} hours</span>
+          <span className="text-sm text-semibold">{elapsed.hours} h</span>
         )}
         {elapsed.minutes > 0 && (
           <span className="text-sm">{elapsed.minutes} m</span>

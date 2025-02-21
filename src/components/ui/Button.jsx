@@ -8,6 +8,8 @@ const variants = {
     "p-2 font-semibold bg-secondary text-danger rounded-md hover:bg-danger hover:text-primary-foreground",
   link: "text-primary-foreground font-bold transition-all duration-300 hover:cursor-pointer hover:text-primary-highlight focus:shadow-[var(--highlight)_0_2px_0_0] pb-1",
   ghost: "text-primary-foreground rounded-md p-2",
+  simple:
+    "flex items-center justify-center text-md text-center font-semibold transition-all duration-300 outline-none active:text-primary-highlight",
 };
 
 const Button = ({

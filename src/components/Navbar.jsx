@@ -6,6 +6,7 @@ import Button from "./ui/Button";
 import useThemeToggle from "../hooks/useTheme";
 import { motion } from "framer-motion";
 import {
+  faFile,
   faSignOut,
   faSync,
   faTerminal,
@@ -68,34 +69,13 @@ const Navbar = () => {
         <img src="/favicon.ico" className="max-w-6 max-h-6 min-w-6 min-h-6" />
       </div>
       <div className="flex w-full justify-center items-center gap-1">
-        {token && viewWidth > 768 && (
-          <>
-            {routes.map((route, index) => (
-              <Tooltip key={index} text={route.name}>
-                <Link path={route.path} name={route.name} />
-              </Tooltip>
-            ))}
-            <Tooltip text="mrps logs">
-              <Button
-                text="Logs"
-                variant="default_rounded"
-                onClick={() => {
-                  setModal(<LogsModal />);
-                  setOpen(true);
-                }}
-              />
+        {token &&
+          viewWidth > 768 &&
+          routes.map((route, index) => (
+            <Tooltip key={index} text={route.name}>
+              <Link path={route.path} name={route.name} />
             </Tooltip>
-            <Tooltip text="Sync config with the .yaml file">
-              <Button
-                variant="default_rounded"
-                text="Terminal"
-                onClick={() => {
-                  navigate("/terminal");
-                }}
-              />
-            </Tooltip>
-          </>
-        )}
+          ))}
         {!token &&
           viewWidth > 768 &&
           authRoutes.map((route, index) => (
@@ -118,6 +98,16 @@ const Navbar = () => {
         </Tooltip>
         {token && (
           <>
+            <Tooltip text="Logs" className="order-first">
+              <Button
+                icon={faFile}
+                variant="default_rounded"
+                onClick={() => {
+                  setModal(<LogsModal />);
+                  setOpen(true);
+                }}
+              />
+            </Tooltip>
             <Tooltip
               className="order-first"
               text="Sync config with the .yaml file"

@@ -50,7 +50,7 @@ const XTerm = () => {
   const handleConnectTerminal = async () => {
     try {
       await api.post("/ssh");
-      toastInfo("SSH connection accepted");
+      toastInfo("SSH connected");
     } catch (error) {
       toastInfo("Failed to connect to SSH");
     }

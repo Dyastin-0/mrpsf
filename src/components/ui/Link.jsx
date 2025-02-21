@@ -8,14 +8,14 @@ const Link = ({ path, icon, name, onClick }) => {
     <DomLink
       onClick={onClick}
       to={path}
-      className={`flex items-center justify-center text-md text-center font-semibold
+      className={`flex items-center justify-center text-md text-center font-bold
       transition-all duration-300 outline-none rounded-full
       hover:shadow-[var(--accent-secondary)_0_0_0_2px] hover:cursor-pointer
       focus:shadow-[var(--accent-secondary)_0_0_0_2px]
       active:shadow-[var(--highlight)_0_0_0_2px]
       ${
         path === location.pathname
-          ? "text-primary-highlight"
+          ? "text-secondary-highlight"
           : "text-primary-foreground"
       }`}
     >

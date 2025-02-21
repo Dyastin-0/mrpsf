@@ -8,7 +8,7 @@ const Toggle = ({ value, onClick }) => {
       className={clsx(
         "relative flex items-center min-w-8 h-4 rounded-full cursor-pointer",
         "border border-secondary-accent transition-colors duration-300",
-        value ? "bg-primary-highlight" : "bg-primary"
+        value ? "bg-secondary-highlight" : "bg-primary"
       )}
       onClick={onClick}
     >

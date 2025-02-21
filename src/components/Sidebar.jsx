@@ -12,13 +12,14 @@ import {
   faDashboard,
   faGlobe,
   faRoute,
-  faFileLines,
+  faFile,
   faTerminal,
 } from "@fortawesome/free-solid-svg-icons";
 import useModal from "./hooks/useModal";
 import StatsModal from "./modals/StatsModal";
 import { useNavigate } from "react-router-dom";
 import LogsModal from "./modals/LogsModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Sidebar = () => {
   const { domains } = useDomains();
@@ -101,7 +102,7 @@ const Sidebar = () => {
           <Button icon={faCircleNodes} onClick={() => navigate("/proxies")} />
           <Separator />
           <Button
-            icon={faFileLines}
+            icon={faFile}
             onClick={() => {
               setModal(<LogsModal />);
               setOpen(true);
@@ -111,9 +112,18 @@ const Sidebar = () => {
         </>
       ) : (
         <>
-          <Uptime />
-          <Domain />
-          <Routes />
+          <div className="flex w-full gap-2 justify-between">
+            <FontAwesomeIcon icon={faClock} />
+            <Uptime />
+          </div>
+          <div className="flex w-full gap-2 justify-between">
+            <FontAwesomeIcon icon={faGlobe} />
+            <Domain />
+          </div>
+          <div className="flex w-full gap-2 justify-between">
+            <FontAwesomeIcon icon={faRoute} />
+            <Routes />
+          </div>
         </>
       )}
     </div>
