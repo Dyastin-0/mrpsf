@@ -19,7 +19,6 @@ import useModal from "./hooks/useModal";
 import useToast from "./hooks/useToast";
 import LogsModal from "./modals/LogsModal";
 import useAxios from "../hooks/useAxios";
-import { TerminalModal } from "./modals/TerminalModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -91,8 +90,7 @@ const Navbar = () => {
                 variant="default_rounded"
                 text="Terminal"
                 onClick={() => {
-                  setModal(<TerminalModal />);
-                  setOpen(true);
+                  navigate("/terminal");
                 }}
               />
             </Tooltip>

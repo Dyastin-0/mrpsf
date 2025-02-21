@@ -19,7 +19,6 @@ import useModal from "./hooks/useModal";
 import StatsModal from "./modals/StatsModal";
 import { useNavigate } from "react-router-dom";
 import LogsModal from "./modals/LogsModal";
-import { TerminalModal } from "./modals/TerminalModal";
 
 const Sidebar = () => {
   const { domains } = useDomains();
@@ -108,13 +107,7 @@ const Sidebar = () => {
               setOpen(true);
             }}
           />
-          <Button
-            icon={faTerminal}
-            onClick={() => {
-              setModal(<TerminalModal />);
-              setOpen(true);
-            }}
-          />
+          <Button icon={faTerminal} onClick={() => navigate("/terminal")} />
         </>
       ) : (
         <>

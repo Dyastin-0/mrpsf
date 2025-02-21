@@ -18,6 +18,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   --highlight: #4daafc;
+  --highlight-secondary: #5331b6;
   --light: #ffffff;
 
   --red: #d10819;
@@ -35,13 +36,13 @@
 }
 
 :root.light {
-  --bg-primary: #f0f0f0;
-  --bg-secondary: #e4e6eb;
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
   --accent-secondary: #dddddd;
   --accent: #ffffff;
   --text-highlight: #ffffff;
   --text-secondary: #888888;
-  --text-primary: #3d3d3e;
+  --text-primary: #434344;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,8 +59,8 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-primary: #f0f0f0;
-    --bg-secondary: #e4e6eb;
+    --bg-primary: #ffffff;
+    --bg-secondary: #fafafa;
     --accent-secondary: #dddddd;
     --accent: #ffffff;
     --text-highlight: #ffffff;
@@ -121,10 +122,33 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--accent-secondary);
+  background: linear-gradient(
+    180deg,
+    var(--highlight-secondary),
+    var(--highlight)
+  );
   border-radius: 8px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+.xterm-viewport::-webkit-scrollbar {
+  width: 6px;
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--highlight-secondary),
+    var(--highlight)
+  );
+  border-radius: 8px;
+}
+
+.xterm-viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.xterm {
+  background: transparent;
+  padding: 0.75rem;
+  border-radius: 10%;
 }

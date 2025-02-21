@@ -21,10 +21,10 @@ export const WSProvider = ({ children }) => {
   const { mutate: mutateDomains } = useDomains();
   const { mutate: mutateHealth } = useHealth();
   const { mutate: mutateLogs } = useLogs();
-  const { mutate: mutateTerminalLogs } = useTerminal();
 
   const wsRef = useRef(null);
   const [isConnected, setIsConnected] = useState(false);
+  const terminalCallback = useRef(null); // 🆕 Terminal callback
 
   const sendMessage = useCallback((message) => {
     if (wsRef.current?.readyState === WebSocket.OPEN) {
@@ -32,6 +32,10 @@ export const WSProvider = ({ children }) => {
     } else {
       console.warn("WebSocket is not connected.");
     }
+  }, []);
+
+  const setTerminalCallback = useCallback((callback) => {
+    terminalCallback.current = callback;
   }, []);
 
   useEffect(() => {
@@ -62,11 +66,26 @@ export const WSProvider = ({ children }) => {
 
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        if (data.type === "config") mutateDomains(data.config, false);
-        if (data.type === "health") mutateHealth(data.health);
-        if (data.type === "log") mutateLogs((prev) => [...prev, data.log]);
-        if (data.type === "stdout")
-          mutateTerminalLogs((prev) => [...prev, data.message]);
+
+        switch (data.type) {
+          case "config":
+            mutateDomains(data.config, false);
+            break;
+          case "health":
+            mutateHealth(data.health);
+            break;
+          case "log":
+            mutateLogs((prev) => [...prev, data.log]);
+            break;
+          case "stdout":
+            // Pass to terminal if callback exists
+            if (terminalCallback.current) {
+              terminalCallback.current(data.message);
+            }
+            break;
+          default:
+            console.warn("Unknown message type:", data.type);
+        }
       };
     };
 
@@ -80,7 +99,9 @@ export const WSProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <WSContext.Provider value={{ isConnected, sendMessage }}>
+    <WSContext.Provider
+      value={{ isConnected, sendMessage, setTerminalCallback }}
+    >
       {children}
     </WSContext.Provider>
   );
