@@ -109,7 +109,7 @@ const Navbar = () => {
         </Tooltip>
         {token && (
           <>
-            <Tooltip text="Logs" className="order-first">
+            <Tooltip text="Logs">
               <Button
                 className="text-lg"
                 icon={faFile}
@@ -120,10 +120,7 @@ const Navbar = () => {
                 }}
               />
             </Tooltip>
-            <Tooltip
-              className="order-first"
-              text="Sync config with the .yaml file"
-            >
+            <Tooltip text="Sync config with the .yaml file">
               <Button
                 className="text-lg"
                 variant="default_rounded"

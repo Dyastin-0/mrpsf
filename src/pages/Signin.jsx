@@ -7,7 +7,7 @@ const Signin = () => {
   const navigate = useNavigate();
 
   if (token) {
-    navigate("/proxies");
+    navigate("/dashboard");
     return;
   }
 

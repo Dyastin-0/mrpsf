@@ -1,4 +1,5 @@
 import Domain from "../components/Domain";
+import Tooltip from "../components/ui/Tooltip";
 import useDomains from "../hooks/useDomains";
 
 const Dashboard = () => {
@@ -18,7 +19,9 @@ const Dashboard = () => {
           <h2 className="text-xs font-semibold mb-2">Active Domains</h2>
           <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
             {enabledDomains.map(([domain, config]) => (
-              <Domain key={domain} domain={domain} config={config} />
+              <Tooltip text={`Configure ${domain}`}>
+                <Domain key={domain} domain={domain} config={config} />
+              </Tooltip>
             ))}
           </div>
         </div>
@@ -26,7 +29,9 @@ const Dashboard = () => {
           <h2 className="text-xs font-semibold mb-2">Inactive Domains</h2>
           <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
             {disabledDomains.map(([domain, config]) => (
-              <Domain key={domain} domain={domain} config={config} />
+              <Tooltip text={`Configure ${domain}`}>
+                <Domain key={domain} domain={domain} config={config} />
+              </Tooltip>
             ))}
           </div>
         </div>

@@ -37,6 +37,7 @@ const Domain = ({ domain, config }) => {
       className={clsx(
         "grid col-span-1 w-full h-fit gap-3 p-3 rounded-md",
         "text-primary-foreground font-semibold",
+        "hover:cursor-pointer",
         "from-primary-highlight to-secondary-highlight",
         "bg-secondary"
       )}
