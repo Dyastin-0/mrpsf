@@ -81,7 +81,8 @@ const Sidebar = () => {
           <Button
             className={clsx(
               "bg-transparent text-primary-highlight-foreground w-full",
-              "text-lg"
+              "text-lg",
+              "hover:bg-secondary-highlight"
             )}
             icon={faClock}
             onClick={() => {
