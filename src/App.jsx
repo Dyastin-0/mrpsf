@@ -8,7 +8,6 @@ import useAuth from "./hooks/useAuth";
 
 const Signin = lazy(() => import("./pages/Signin"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const Proxies = lazy(() => import("./pages/Proxies"));
 const Terminal = lazy(() => import("./pages/Terminal"));
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_API_URL;
@@ -18,24 +17,21 @@ const App = () => {
   const { token } = useAuth();
 
   return (
-    <>
-      <Navbar />
-      <div className="relative max-w-[1300px] w-full h-full justify-center flex flex-1">
-        {token && <Sidebar />}
-        <div className="w-full">
-          <Suspense>
-            <Routes>
-              <Route path="/sign-in" element={<Signin />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/terminal" element={<Terminal />} />
-                <Route path="/proxies" element={<Proxies />} />
-              </Route>
-            </Routes>
-          </Suspense>
-        </div>
+    <div className="relative flex gap-3 p-3 w-full h-full justify-center">
+      {token && <Sidebar />}
+      <div className="w-full h-full">
+        <Navbar />
+        <Suspense>
+          <Routes>
+            <Route path="/sign-in" element={<Signin />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/terminal" element={<Terminal />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </div>
-    </>
+    </div>
   );
 };
 

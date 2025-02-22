@@ -15,7 +15,7 @@ const TextArea = ({ value, onChange, placeholder }) => {
       <textarea
         ref={textareaRef}
         rows="1"
-        className="outline-none rounded-md bg-secondary text-sm resize-none p-2
+        className="outline-none rounded-md bg-secondary text-xs resize-none p-2
         placeholder-secondary-foreground text-primary-foreground scrollbar-none
         transition-colors duration-300 w-full
         focus:shadow-[var(--accent-secondary)_0_0_0_2px]

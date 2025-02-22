@@ -7,15 +7,15 @@ const Toggle = ({ value, onClick }) => {
     <div
       className={clsx(
         "relative flex items-center min-w-8 h-4 rounded-full cursor-pointer",
-        "border border-secondary-accent transition-colors duration-300",
-        value ? "bg-secondary-highlight" : "bg-primary"
+        "transition-colors duration-300 border border-secondary-accent",
+        value ? "bg-primary-highlight" : "bg-primary"
       )}
       onClick={onClick}
     >
       <motion.div
         className={clsx(
           "absolute w-[.75rem] h-[.75rem] rounded-full",
-          value ? "bg-primary" : "bg-secondary-highlight"
+          value ? "bg-primary" : "bg-primary-highlight"
         )}
         initial={{
           x: value ? 16 : 3,

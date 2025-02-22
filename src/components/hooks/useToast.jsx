@@ -42,7 +42,7 @@ export const ToastProvider = ({ children }) => {
 };
 
 const useToast = () => {
-  const { addToast } = useContext(ToastContext);
+  const { addToast } = useContext(ToastContext) || {};
 
   const toastSuccess = (message) => addToast(message, "text-success");
   const toastError = (message) => addToast(message, "text-danger");
@@ -65,7 +65,7 @@ const Toast = ({ message, onClose, id, color = "text-primary-foreground" }) => {
         y: 999,
       }}
       className={`flex justify-between border border-secondary-accent items-center gap-2
-      bg-secondary text-sm ${color} font-semibold rounded-md p-2 relative`}
+      bg-secondary text-xs ${color} font-semibold rounded-md p-2 relative`}
     >
       <p>{message}</p>
       <Button
@@ -73,6 +73,7 @@ const Toast = ({ message, onClose, id, color = "text-primary-foreground" }) => {
         onClick={onClose}
         icon={faX}
         className="justify-between"
+        iconClassName="text-xs"
       />
     </motion.div>
   );

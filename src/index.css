@@ -4,10 +4,7 @@
 
 :root {
   /* Common properties */
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
+  font-family: "Inter", sans-serif;
   color-scheme: light dark;
   color: var(--text-primary);
   background-color: var(--bg-primary);
@@ -26,23 +23,23 @@
 }
 
 :root.dark {
-  --bg-primary: #0b1624;
-  --bg-secondary: #071220;
+  --bg-primary: #00111c;
+  --bg-secondary: #001523;
   --accent: #152030;
   --accent-secondary: #0f1b2e;
   --text-highlight: #ffffff;
   --text-secondary: #9ca3af;
-  --text-primary: #c7c7c7;
+  --text-primary: #ffffff;
 }
 
 :root.light {
-  --bg-primary: #f7f7f7;
-  --bg-secondary: #ffffff;
+  --bg-primary: #e9ecef;
+  --bg-secondary: #f8f9fa;
   --accent-secondary: #dddddd;
   --accent: #ffffff;
   --text-highlight: #ffffff;
-  --text-secondary: #888888;
-  --text-primary: #484849;
+  --text-secondary: #6c757d;
+  --text-primary: #343a40;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -114,7 +111,7 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -127,7 +124,6 @@ body {
     var(--highlight-secondary),
     var(--highlight)
   );
-  border-radius: 8px;
 }
 
 .xterm-viewport::-webkit-scrollbar {
@@ -135,16 +131,11 @@ body {
 }
 
 .xterm-viewport::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    var(--highlight-secondary),
-    var(--highlight)
-  );
-  border-radius: 8px;
+  background-color: var(--highlight-secondary);
 }
 
-.xterm-viewport::-webkit-scrollbar-track {
-  background: transparent;
+.xterm-viewport::-webkit-scrollbar-track:hover {
+  background: var(--bg-secondary);
 }
 
 .xterm {

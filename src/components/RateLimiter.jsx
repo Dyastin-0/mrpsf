@@ -14,7 +14,7 @@ const RateLimiter = ({ limiter }) => {
               </span>
             </div>
           }
-          className="text-sm"
+          className="text-xs"
         />
         <TruncatedText
           text={
@@ -25,7 +25,7 @@ const RateLimiter = ({ limiter }) => {
               </span>
             </div>
           }
-          className="text-sm"
+          className="text-xs"
         />
         <TruncatedText
           text={
@@ -36,7 +36,7 @@ const RateLimiter = ({ limiter }) => {
               </span>
             </div>
           }
-          className="text-sm"
+          className="text-xs"
         />
       </div>
     </>

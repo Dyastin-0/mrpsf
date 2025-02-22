@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useEffect, useRef } from "react";
 
 const TerminalInput = ({ setInput, input, handleSubmit }) => {
@@ -13,7 +14,11 @@ const TerminalInput = ({ setInput, input, handleSubmit }) => {
       <input
         ref={inputRef}
         type="text"
-        className="flex-1 bg-transparent ml-2 outline-none font-bold text-primary-highlight placeholder-secondary-foreground"
+        className={clsx(
+          "flex-1 ml-2 outline-none",
+          "font-bold text-primary-highlight placeholder-secondary-foreground",
+          "bg-transparent"
+        )}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         autoFocus

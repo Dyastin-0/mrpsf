@@ -7,7 +7,6 @@ import Uptime from "./Uptime";
 import Separator from "./ui/Separator";
 import Button from "./ui/Button";
 import {
-  faCircleNodes,
   faClock,
   faDashboard,
   faGlobe,
@@ -43,6 +42,7 @@ const Sidebar = () => {
     },
     0
   );
+
   const Domain = () => (
     <Stat
       title="Domains"
@@ -54,7 +54,6 @@ const Sidebar = () => {
       }}
     />
   );
-
   const Routes = () => (
     <Stat
       title="Routes"
@@ -70,13 +69,20 @@ const Sidebar = () => {
   return (
     <div
       className={clsx(
-        "sticky top-0 flex flex-col items-end h-fit gap-3 p-3 rounded-md overflow-hidden",
+        "sticky flex flex-col h-[calc(100vh-1.5rem)] top-3 gap-3 p-3 rounded-md",
+        "text-primary-highlight-foreground",
+        "from-primary-highlight to-secondary-highlight",
+        "bg-gradient-to-tl",
         viewWidth > 768 ? "min-w-[200px]" : "min-w-[50px]"
       )}
     >
       {viewWidth < 768 ? (
-        <>
+        <div className="flex flex-col gap-1">
           <Button
+            className={clsx(
+              "bg-transparent text-primary-highlight-foreground w-full",
+              "text-lg"
+            )}
             icon={faClock}
             onClick={() => {
               setModal(<StatsModal icon={faClock} component={<Uptime />} />);
@@ -84,6 +90,11 @@ const Sidebar = () => {
             }}
           />
           <Button
+            className={clsx(
+              "bg-transparent text-primary-highlight-foreground w-full",
+              "text-lg",
+              "hover:bg-secondary-highlight"
+            )}
             icon={faGlobe}
             onClick={() => {
               setModal(<StatsModal icon={faGlobe} component={<Domain />} />);
@@ -91,28 +102,51 @@ const Sidebar = () => {
             }}
           />
           <Button
+            className={clsx(
+              "bg-transparent text-primary-highlight-foreground w-full",
+              "text-lg",
+              "hover:bg-secondary-highlight"
+            )}
             icon={faRoute}
             onClick={() => {
               setModal(<StatsModal icon={faRoute} component={<Routes />} />);
               setOpen(true);
             }}
           />
-          <Separator />
-          <Button icon={faDashboard} onClick={() => navigate("/dashboard")} />
-          <Button icon={faCircleNodes} onClick={() => navigate("/proxies")} />
-          <Separator />
           <Button
+            className={clsx(
+              "bg-transparent text-primary-highlight-foreground w-full",
+              "text-lg",
+              "hover:bg-secondary-highlight"
+            )}
+            icon={faDashboard}
+            onClick={() => navigate("/dashboard")}
+          />
+          <Button
+            className={clsx(
+              "bg-transparent text-primary-highlight-foreground w-full",
+              "text-lg",
+              "hover:bg-secondary-highlight"
+            )}
             icon={faFile}
             onClick={() => {
               setModal(<LogsModal />);
               setOpen(true);
             }}
           />
-          <Button icon={faTerminal} onClick={() => navigate("/terminal")} />
-        </>
+          <Button
+            className={clsx(
+              "bg-transparent text-primary-highlight-foreground w-full",
+              "text-lg",
+              "hover:bg-secondary-highlight"
+            )}
+            icon={faTerminal}
+            onClick={() => navigate("/terminal")}
+          />
+        </div>
       ) : (
         <>
-          <div className="flex w-full gap-2 justify-between">
+          <div className="flex   w-full gap-2 justify-between">
             <FontAwesomeIcon icon={faClock} />
             <Uptime />
           </div>

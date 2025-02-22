@@ -4,6 +4,7 @@ import Button from "../ui/Button";
 import Input from "../ui/Input";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import clsx from "clsx";
 
 const SigninForm = ({}) => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const SigninForm = ({}) => {
 
   useEffect(() => {
     if (token) {
-      navigate("/proxies");
+      navigate("/dashboard");
     }
   }, [token, navigate]);
 
@@ -36,7 +37,10 @@ const SigninForm = ({}) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col w-[250px] max-w-full p-3 text-sm text-primary-foreground rounded-md border border-secondary-accent z-10"
+      className={clsx(
+        "flex flex-col w-[250px] max-w-full p-3 rounded-md border border-secondary-accent z-10",
+        "text-xs text-primary-foreground"
+      )}
     >
       <div className="flex gap-1 justify-center items-center text-lg font-semibold">
         <span>Sign in to</span>

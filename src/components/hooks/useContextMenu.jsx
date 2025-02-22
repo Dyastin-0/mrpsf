@@ -66,7 +66,7 @@ const useContextMenu = (menuOptions = []) => {
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.2 }}
         >
-          <ul className="text-sm font-semibold">
+          <ul className="text-xs font-semibold">
             {menuOptions.map((option, index) => (
               <li
                 key={index}

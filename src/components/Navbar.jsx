@@ -20,6 +20,8 @@ import useModal from "./hooks/useModal";
 import useToast from "./hooks/useToast";
 import LogsModal from "./modals/LogsModal";
 import useAxios from "../hooks/useAxios";
+import clsx from "clsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -59,8 +61,12 @@ const Navbar = () => {
 
   return (
     <motion.div
-      className={`sticky flex justify-between w-full p-3 gap-3 z-40 bg-secondary text-sm
-      ${lastScrollY > 50 ? "border border-secondary-accent" : ""}`}
+      className={clsx(
+        "sticky flex justify-between w-full pb-3 gap-3 z-40",
+        "text-xs",
+        "bg-secondary",
+        lastScrollY > 50 && "border border-secondary-accent"
+      )}
       initial={{ y: 0 }}
       animate={isScrollingDown ? { y: -100 } : { y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -85,21 +91,27 @@ const Navbar = () => {
           ))}
       </div>
       <div className="flex w-fit gap-1 justify-center items-center">
-        <Tooltip>
-          <Button variant="default_rounded" icon={faGithub} />
-        </Tooltip>
+        <a
+          href="https://github.com/Dyastin-0/mrps"
+          className="p-2 rounded-full transition-all duration-300 hover:bg-secondary-accent"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon={faGithub} className="text-lg" />
+        </a>
         <Tooltip text="Toggle theme">
           <Button
             variant="default_rounded"
             icon={icon}
             onClick={toggleTheme}
-            className="p-2"
+            className="text-lg"
           />
         </Tooltip>
         {token && (
           <>
             <Tooltip text="Logs" className="order-first">
               <Button
+                className="text-lg"
                 icon={faFile}
                 variant="default_rounded"
                 onClick={() => {
@@ -113,6 +125,7 @@ const Navbar = () => {
               text="Sync config with the .yaml file"
             >
               <Button
+                className="text-lg"
                 variant="default_rounded"
                 icon={faSync}
                 onClick={handleSync}
@@ -120,6 +133,7 @@ const Navbar = () => {
             </Tooltip>
             <Tooltip text="Sign out">
               <Button
+                className="text-lg"
                 variant="default_rounded"
                 icon={faSignOut}
                 onClick={handleSignout}

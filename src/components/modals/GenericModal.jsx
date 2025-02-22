@@ -13,12 +13,12 @@ const GenericModal = ({
   return (
     <div
       className={clsx(
-        "relative flex flex-col h-[75vh] w-[400px] max-w-full p-4 gap-4 rounded-md bg-primary",
+        "relative flex flex-col h-[75vh] w-[400px] max-w-full p-3 gap-3 rounded-md bg-primary",
         "text-xs text-primary-foreground border border-secondary-accent overflow-hidden z-50",
         className
       )}
     >
-      <div className="flex items-end font-semibold gap-2 text-sm">
+      <div className="flex items-end font-semibold gap-2 text-xs">
         <div className="flex items-center flex-1 gap-1 min-w-0">
           {icon && <FontAwesomeIcon icon={icon} />}
           <TruncatedText text={title} />
@@ -27,7 +27,7 @@ const GenericModal = ({
           icon={faX}
           onClick={() => setOpen(false)}
           variant="ghost"
-          className="w-fit absolute top-4 right-4"
+          className="w-fit absolute top-3 right-4"
         /> */}
       </div>
 

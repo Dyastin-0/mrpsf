@@ -18,7 +18,7 @@ const ProgressBar = ({ value, text, visible }) => {
         value={value}
         max="100"
       ></progress>
-      <h6 className="text-sm">{text}</h6>
+      <h6 className="text-xs">{text}</h6>
     </motion.div>
   );
 };

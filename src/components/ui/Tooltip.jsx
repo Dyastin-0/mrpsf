@@ -69,7 +69,7 @@ const Tooltip = ({ children, text, disableTooltip, className }) => {
             <motion.div
               ref={tooltipRef}
               className="fixed bg-secondary border border-secondary-accent
-              whitespace-normal break-words text-[0.60rem] text-primary-foreground rounded-md p-2 z-[9999]
+              whitespace-normal break-words text-[0.70rem] text-primary-foreground rounded-md p-2 z-[9999]
               "
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}

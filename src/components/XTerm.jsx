@@ -1,11 +1,13 @@
+import "xterm/css/xterm.css";
 import React, { useEffect, useRef } from "react";
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
-import "xterm/css/xterm.css";
+import { WebLinksAddon } from "xterm-addon-web-links";
 import useWS from "../hooks/useWS";
 import useAxios from "../hooks/useAxios";
 import useToast from "./hooks/useToast";
 import useAuth from "../hooks/useAuth";
+import clsx from "clsx";
 
 const XTerm = () => {
   const { token } = useAuth();
@@ -14,6 +16,7 @@ const XTerm = () => {
   const terminalRef = useRef(null);
   const term = useRef(null);
   const fitAddon = useRef(new FitAddon());
+  const webLinkAddon = useRef(new WebLinksAddon());
   const { sendMessage, setTerminalCallback } = useWS();
 
   useEffect(() => {
@@ -29,6 +32,7 @@ const XTerm = () => {
 
     fitAddon.current.activate();
     term.current.loadAddon(fitAddon.current);
+    term.current.loadAddon(webLinkAddon.current);
     term.current.open(terminalRef.current);
     fitAddon.current.fit();
     term.current.focus();
@@ -68,7 +72,16 @@ const XTerm = () => {
     };
   }, [isAxiosReady]);
 
-  return <div ref={terminalRef} className="h-full w-full bg-black"></div>;
+  return (
+    <div
+      ref={terminalRef}
+      className={clsx(
+        "h-full w-full pt-3 rounded-md",
+        "from-primary-highlight to-secondary-highlight",
+        "bg-gradient-to-tr"
+      )}
+    />
+  );
 };
 
 export default XTerm;

@@ -24,19 +24,19 @@ const Button = ({
   disabled,
   icon,
   end = false,
-  iconColor,
 }) => {
   return (
     <button
       disabled={disabled}
       onMouseEnter={onMouseEnter}
       className={clsx(
-        `flex h-fit items-center font-semibold gap-1 ${
-          end ? "justify-end" : "justify-center"
-        } text-sm outline-none transition-all duration-300` +
-          "focus:shadow-[var(--accent-secondary)_0_0_0_2px] active:shadow-[var(--highlight)_0_0_0_2px] hover:shadow-[var(--accent-secondary)_0_0_0_2px]",
-        variants[variant],
-        className
+        className,
+        "flex h-fit items-center gap-1",
+        "outline-none transition-all duration-300",
+        "font-semibold",
+        "hover:bg-secondary-accent",
+        end ? "justify-end" : "justify-center",
+        variants[variant]
       )}
       type={type}
       onClick={onClick}
@@ -46,7 +46,7 @@ const Button = ({
       {text}
       {icon && (
         <div className="flex items-center justify-center min-w-[14px] min-h-[14px] max-h-[18px] max-w-[18px]">
-          {<FontAwesomeIcon className={iconColor} icon={icon} />}
+          {<FontAwesomeIcon icon={icon} />}
         </div>
       )}
     </button>

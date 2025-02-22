@@ -6,6 +6,7 @@ import Toggle from "./ui/Toggle";
 import TruncatedText from "./ui/TruncatedText";
 import useAuth from "../hooks/useAuth";
 import { Dot } from "./ui/Dot";
+import clsx from "clsx";
 
 const Proxy = ({ domain, config }) => {
   const { api } = useAxios();
@@ -23,9 +24,14 @@ const Proxy = ({ domain, config }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 w-full h-full gap-3 p-3 bg-secondary rounded-md text-primary-foreground">
+    <div
+      className={clsx(
+        "grid grid-cols-1 w-full h-full gap-3 p-3 rounded-md",
+        "text-primary-foreground"
+      )}
+    >
       <div className="flex gap-2 w-full justify-between items-center">
-        <TruncatedText text={domain} className="text-sm font-semibold" />
+        <TruncatedText text={domain} className="text-xs font-semibold" />
         <Toggle value={enabled} onClick={handleEnabled} />
       </div>
       <Dot value={enabled} />

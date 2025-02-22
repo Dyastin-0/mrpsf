@@ -8,7 +8,7 @@ const Stat = ({ title, count, length, tooltip }) => {
       <div className="flex justify-between gap-2">
         <TruncatedText text={title} className="text-xs font-semibold" />
       </div>
-      <div className="flex gap-2 text-sm">
+      <div className="flex gap-2 text-xs">
         <Tooltip text={tooltip.g}>
           <StatCount count={count} value={true} />
         </Tooltip>
