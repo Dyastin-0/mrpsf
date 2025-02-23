@@ -24,7 +24,7 @@ export const WSProvider = ({ children }) => {
 
   const wsRef = useRef(null);
   const [isConnected, setIsConnected] = useState(false);
-  const terminalCallback = useRef(null); // 🆕 Terminal callback
+  const terminalCallback = useRef(null);
 
   const sendMessage = useCallback((message) => {
     if (wsRef.current?.readyState === WebSocket.OPEN) {
@@ -78,7 +78,6 @@ export const WSProvider = ({ children }) => {
             mutateLogs((prev) => [...prev, data.log]);
             break;
           case "stdout":
-            // Pass to terminal if callback exists
             if (terminalCallback.current) {
               terminalCallback.current(data.message);
             }

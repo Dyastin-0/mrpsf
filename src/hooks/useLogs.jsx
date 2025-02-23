@@ -16,7 +16,7 @@ export const LogsProvider = ({ children }) => {
     if (!token) return;
     const subscribe = async () => {
       try {
-        await api.get(`/config/logs/ws?t=${token}`);
+        await api.get(`/logs/ws?t=${token}`);
       } catch (error) {
         console.error("WebSocket subscription error:", error);
       }

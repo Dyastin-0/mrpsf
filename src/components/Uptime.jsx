@@ -6,9 +6,9 @@ import dayjs from "dayjs";
 const Uptime = () => {
   const { api, isAxiosReady } = useAxios();
   const { data: uptime } = useSWR(
-    isAxiosReady ? "/config/uptime" : null,
+    isAxiosReady ? "/logs/uptime" : null,
     async () => {
-      const { data } = await api.get("/config/uptime");
+      const { data } = await api.get("/logs/uptime");
       return data;
     }
   );

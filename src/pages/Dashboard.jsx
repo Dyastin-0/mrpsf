@@ -19,8 +19,8 @@ const Dashboard = () => {
           <h2 className="text-xs font-semibold mb-2">Active Domains</h2>
           <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
             {enabledDomains.map(([domain, config]) => (
-              <Tooltip text={`Configure ${domain}`}>
-                <Domain key={domain} domain={domain} config={config} />
+              <Tooltip key={domain} text={`Configure ${domain}`}>
+                <Domain domain={domain} config={config} />
               </Tooltip>
             ))}
           </div>
@@ -29,8 +29,8 @@ const Dashboard = () => {
           <h2 className="text-xs font-semibold mb-2">Inactive Domains</h2>
           <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
             {disabledDomains.map(([domain, config]) => (
-              <Tooltip text={`Configure ${domain}`}>
-                <Domain key={domain} domain={domain} config={config} />
+              <Tooltip key={domain} text={`Configure ${domain}`}>
+                <Domain domain={domain} config={config} />
               </Tooltip>
             ))}
           </div>
