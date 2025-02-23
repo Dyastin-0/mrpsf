@@ -16,7 +16,7 @@ const Log = ({ log }) => {
   if (parsed["error"] == "Invalid log format") return;
 
   return (
-    <div className="flex flex-wrap gap-x-2 text-sm">
+    <div className="flex flex-wrap gap-x-2 text-sm font-semibold">
       {Object.entries(parsed).map(([key, value], index) => {
         return key === "level" ||
           key === "level" ||
@@ -30,7 +30,7 @@ const Log = ({ log }) => {
             <span
               className={clsx(
                 colors[value] || colors[key] || "text-primary-foreground",
-                "font-semibold w-fit"
+                "w-fit"
               )}
             >
               {key === "time"
@@ -48,11 +48,13 @@ const Log = ({ log }) => {
           </div>
         ) : (
           <div key={index} className="flex">
-            <span className="text-blue w-fit">{key}=</span>
+            <span className="text-blue w-fit text-secondary-foreground">
+              {key}=
+            </span>
             <span
               className={clsx(
                 colors[value] || colors[key] || "text-primary-foreground",
-                "font-semibold w-fit"
+                "w-fit"
               )}
             >
               {value}

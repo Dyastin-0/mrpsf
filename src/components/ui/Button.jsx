@@ -45,7 +45,7 @@ const Button = ({
     >
       {text}
       {icon && (
-        <div className="flex items-center justify-center min-w-[14px] min-h-[14px] max-h-[18px] max-w-[18px]">
+        <div className="flex items-center justify-center min-w-[18px] min-h-[18px] max-h-[18px] max-w-[18px]">
           {<FontAwesomeIcon icon={icon} />}
         </div>
       )}

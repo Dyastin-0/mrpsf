@@ -93,11 +93,18 @@ const Navbar = () => {
       <div className="flex w-fit gap-1 justify-center items-center">
         <a
           href="https://github.com/Dyastin-0/mrps"
-          className="p-2 rounded-full transition-all duration-300 hover:bg-secondary-accent"
+          className={clsx(
+            "flex justify-center items-center p-2 rounded-full",
+            "transition-all duration-300",
+            "hover:bg-secondary-accent"
+          )}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={faGithub} className="text-lg" />
+          <FontAwesomeIcon
+            icon={faGithub}
+            className="text-lg min-w-[18px] min-h-[18px] max-h-[18px] max-w-[18px]"
+          />
         </a>
         <Tooltip text="Toggle theme">
           <Button

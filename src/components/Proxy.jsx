@@ -26,7 +26,7 @@ const Proxy = ({ domain, config }) => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 w-full h-full gap-3 p-3 rounded-md",
+        "grid grid-cols-1 w-full h-full gap-3 rounded-md",
         "text-primary-foreground"
       )}
     >
