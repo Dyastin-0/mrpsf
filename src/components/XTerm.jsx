@@ -37,7 +37,12 @@ const XTerm = () => {
     fitAddon.current.fit();
     term.current.focus();
 
-    term.current.onData((data) => sendMessage({ SSHCommand: data }));
+    term.current.onData((data) => {
+      if (data === "\u0004") {
+        term.current.write("\n\nssh disconnected");
+      }
+      sendMessage({ SSHCommand: data });
+    });
 
     setTerminalCallback((message) => {
       term.current.write(message);
@@ -67,8 +72,7 @@ const XTerm = () => {
     handleConnectTerminal();
 
     return () => {
-      api.delete("/ssh");
-      toastInfo("SSH disconnected");
+      sendMessage({ SSHCommand: "\u0004" });
     };
   }, [isAxiosReady]);
 

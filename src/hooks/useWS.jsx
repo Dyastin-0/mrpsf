@@ -82,6 +82,9 @@ export const WSProvider = ({ children }) => {
               terminalCallback.current(data.message);
             }
             break;
+          case "notif":
+            toastInfo(data.message);
+            break;
           default:
             console.warn("Unknown message type:", data.type);
         }
