@@ -49,7 +49,7 @@ const Domain = ({ domain, config }) => {
           &#8226;
           <TruncatedText
             text={`${config?.SortedRoutes?.length || 0} ${
-              config?.SortedRoutes?.length === 1 ? "route" : "routes"
+              config?.SortedRoutes?.length > 1 ? "routes" : "route"
             }`}
             className="text-xs text-primary-highlight"
           />
@@ -58,7 +58,7 @@ const Domain = ({ domain, config }) => {
           &#8226;
           <TruncatedText
             text={`${totalAliveDests} ${
-              totalAliveDests === 1 ? "dest" : "dests"
+              totalAliveDests > 1 ? "dests" : "dest"
             } alive`}
             className="text-xs"
           />
@@ -67,7 +67,7 @@ const Domain = ({ domain, config }) => {
           &#8226;
           <TruncatedText
             text={`${totalBalancers} ${
-              totalBalancers === 1 ? "balancer" : "balancers"
+              totalBalancers > 1 ? "balancers" : "balancer"
             }`}
             className="text-xs"
           />

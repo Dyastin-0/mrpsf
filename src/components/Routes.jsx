@@ -18,16 +18,16 @@ const Routes = ({ routes, domain }) => {
             />
             <TruncatedText
               text={path}
-              className="text-xs text-primary-highlight font-semibold"
+              className="text-xs text-primary-highlight"
             />
             <TruncatedText
               text={routeConfig.Balancer?.Dests[0]?.URL}
-              className="text-xs font-semibold"
+              className="text-xs text-secondary-foreground"
             />
             {routeConfig.RewriteRule.Type !== "" && (
               <TruncatedText
                 text={routeConfig.RewriteRule.Value}
-                className="text-xs font-semibold"
+                className="text-xs text-secondary-foreground"
               />
             )}
             {routeConfig.RewriteRule.Type === "regex" ? (
@@ -37,7 +37,7 @@ const Routes = ({ routes, domain }) => {
                   routeConfig.RewriteRule.Value,
                   routeConfig.RewriteRule.ReplaceVal
                 )}
-                className="text-xs text-primary-highlight font-semibold"
+                className="text-xs text-primary-highlight"
               />
             ) : routeConfig.RewriteRule.Type === "prefix" ? (
               <TruncatedText
@@ -45,25 +45,22 @@ const Routes = ({ routes, domain }) => {
                   routeConfig.RewriteRule.Value,
                   routeConfig.RewriteRule.ReplaceVal
                 )}
-                className="text-xs text-primary-highlight font-semibold"
+                className="text-xs text-primary-highlight"
               />
             ) : (
               <TruncatedText
                 text={path}
-                className="text-xs font-semibold text-primary-highlight"
+                className="text-xs text-primary-highlight"
               />
             )}
           </div>
           {routeConfig.Balancer.Dests.length > 1 && (
             <div className="flex flex-col w-full gap-2 ml-8">
-              <h3 className="text-xs font-semibold">Balancer</h3>
+              <h3 className="text-xs">Balancer</h3>
               {routeConfig.Balancer.Dests.map((dest, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <Dot value={health && health[domain][dest.URL]} />
-                  <TruncatedText
-                    text={dest.URL}
-                    className="text-xs font-semibold"
-                  />
+                  <TruncatedText text={dest.URL} className="text-xs" />
                 </div>
               ))}
             </div>
