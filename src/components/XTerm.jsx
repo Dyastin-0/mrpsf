@@ -42,6 +42,7 @@ const XTerm = () => {
       if (data === "\u0004") {
         term.current.write("\n\nssh disconnected");
         sendMessage({ SSHCommand: data, SessionID: sessionIDRef.current });
+        sessionIDRef.current = "";
         return;
       }
       sendMessage({ SSHCommand: data, SessionID: sessionIDRef.current });
@@ -50,7 +51,6 @@ const XTerm = () => {
     setTerminalCallback((rcev) => {
       if (rcev.type === "sshSessionID") {
         sessionIDRef.current = rcev.message;
-        sessionIDRef.current = "";
         return;
       }
       term.current.write(rcev.message);
