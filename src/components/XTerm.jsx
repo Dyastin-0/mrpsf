@@ -41,7 +41,6 @@ const XTerm = () => {
     term.current.onData((data) => {
       if (data === "\u0004") {
         term.current.write("\n\nssh disconnected");
-        console.log(sessionIDRef.current);
         sendMessage({ SSHCommand: data, SessionID: sessionIDRef.current });
         return;
       }
@@ -50,8 +49,8 @@ const XTerm = () => {
 
     setTerminalCallback((rcev) => {
       if (rcev.type === "sshSessionID") {
-        console.log(rcev.message);
         sessionIDRef.current = rcev.message;
+        sessionIDRef.current = "";
         return;
       }
       term.current.write(rcev.message);
@@ -81,8 +80,10 @@ const XTerm = () => {
     handleConnectTerminal();
 
     return () => {
-      if (sessionIDRef.current !== "")
+      if (sessionIDRef.current !== "") {
         sendMessage({ SSHCommand: "\u0004", SessionID: sessionIDRef.current });
+        sessionIDRef.current = "";
+      }
     };
   }, [isAxiosReady]);
 
