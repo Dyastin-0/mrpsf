@@ -18,6 +18,7 @@ const XTerm = () => {
   const fitAddon = useRef(new FitAddon());
   const webLinkAddon = useRef(new WebLinksAddon());
   const { sendMessage, setTerminalCallback } = useWS();
+  const sessionIDRef = useRef("");
 
   useEffect(() => {
     term.current = new Terminal({
@@ -40,12 +41,20 @@ const XTerm = () => {
     term.current.onData((data) => {
       if (data === "\u0004") {
         term.current.write("\n\nssh disconnected");
+        console.log(sessionIDRef.current);
+        sendMessage({ SSHCommand: data, SessionID: sessionIDRef.current });
+        return;
       }
-      sendMessage({ SSHCommand: data });
+      sendMessage({ SSHCommand: data, SessionID: sessionIDRef.current });
     });
 
-    setTerminalCallback((message) => {
-      term.current.write(message);
+    setTerminalCallback((rcev) => {
+      if (rcev.type === "sshSessionID") {
+        console.log(rcev.message);
+        sessionIDRef.current = rcev.message;
+        return;
+      }
+      term.current.write(rcev.message);
     });
 
     const handleResize = () => fitAddon.current.fit();
@@ -72,7 +81,8 @@ const XTerm = () => {
     handleConnectTerminal();
 
     return () => {
-      sendMessage({ SSHCommand: "\u0004" });
+      if (sessionIDRef.current !== "")
+        sendMessage({ SSHCommand: "\u0004", SessionID: sessionIDRef.current });
     };
   }, [isAxiosReady]);
 

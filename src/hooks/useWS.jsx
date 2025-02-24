@@ -11,7 +11,6 @@ import useToast from "../components/hooks/useToast";
 import useDomains from "./useDomains";
 import useHealth from "./useHealth";
 import useLogs from "./useLogs";
-import useTerminal from "./useTerminal";
 
 const WSContext = createContext();
 
@@ -78,8 +77,9 @@ export const WSProvider = ({ children }) => {
             mutateLogs((prev) => [...prev, data.log]);
             break;
           case "stdout":
+          case "sshSessionID":
             if (terminalCallback.current) {
-              terminalCallback.current(data.message);
+              terminalCallback.current(data);
             }
             break;
           case "notif":
