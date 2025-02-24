@@ -4,26 +4,26 @@ import clsx from "clsx";
 import useModal from "./hooks/useModal";
 import Proxy from "./Proxy";
 import DomainModal from "./hooks/DomainModal";
+import useHealth from "../hooks/useHealth";
 
 const Domain = ({ domain, config }) => {
   const { setModal, setOpen } = useModal();
+  const { health } = useHealth();
 
-  const totalBalancers = Object.values(config.Routes || {}).reduce(
-    (routeSum, route) => {
-      const length = route.Balancer?.Dests?.length;
-      return routeSum + (length > 1 ? length : 0);
-    },
-    0
-  );
+  const { totalBalancers, totalAliveDests } = Object.values(
+    config.Routes || {}
+  ).reduce(
+    (acc, route) => {
+      const dests = route.Balancer?.Dests || [];
+      acc.totalBalancers += dests.length > 1 ? dests.length : 0;
 
-  const totalAliveDests = Object.values(config.Routes || {}).reduce(
-    (routeSum, route) => {
-      return (
-        routeSum +
-        (route.Balancer?.Dests?.filter((dest) => dest.Alive).length || 0)
-      );
+      acc.totalAliveDests += dests.filter(
+        (dest) => health?.[domain]?.[dest.URL] === true
+      ).length;
+
+      return acc;
     },
-    0
+    { totalBalancers: 0, totalAliveDests: 0 }
   );
 
   return (
@@ -48,8 +48,8 @@ const Domain = ({ domain, config }) => {
         <div className="flex gap-2 items-center">
           &#8226;
           <TruncatedText
-            text={`${config?.SortedRoutes?.length || 0}  ${
-              config?.SortedRoutes?.length > 1 ? "routes" : "route"
+            text={`${config?.SortedRoutes?.length || 0} ${
+              config?.SortedRoutes?.length === 1 ? "route" : "routes"
             }`}
             className="text-xs text-primary-highlight"
           />
@@ -57,8 +57,8 @@ const Domain = ({ domain, config }) => {
         <div className="flex gap-2 items-center">
           &#8226;
           <TruncatedText
-            text={`${totalAliveDests || 0} ${
-              totalAliveDests > 1 ? "dests" : "dest"
+            text={`${totalAliveDests} ${
+              totalAliveDests === 1 ? "dest" : "dests"
             } alive`}
             className="text-xs"
           />
@@ -66,8 +66,8 @@ const Domain = ({ domain, config }) => {
         <div className="flex gap-2 items-center">
           &#8226;
           <TruncatedText
-            text={`${totalBalancers || 0} ${
-              totalBalancers > 1 ? "balancers" : "balancer"
+            text={`${totalBalancers} ${
+              totalBalancers === 1 ? "balancer" : "balancers"
             }`}
             className="text-xs"
           />
