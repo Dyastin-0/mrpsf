@@ -1,8 +1,10 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useHealth from "../hooks/useHealth";
 import { Dot } from "./ui/Dot";
 import TruncatedText from "./ui/TruncatedText";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
-const Routes = ({ routes, domain }) => {
+const Routes = ({ protocol, routes, domain }) => {
   const { health } = useHealth();
 
   return (
@@ -16,10 +18,23 @@ const Routes = ({ routes, domain }) => {
                 health && health[domain][routeConfig.Balancer.Dests[0].URL]
               }
             />
-            <TruncatedText
-              text={path}
-              className="text-xs text-primary-highlight"
-            />
+            <div className="flex items-center gap-2">
+              <a
+                href={`${
+                  protocol !== "" || protocol !== "https" ? "http" : "https"
+                }://${domain}${path}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs hover:text-primary-highlight"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <FontAwesomeIcon icon={faUpRightFromSquare} />
+              </a>
+              <TruncatedText
+                text={path}
+                className="text-xs text-primary-highlight"
+              />
+            </div>
             <TruncatedText
               text={routeConfig.Balancer?.Dests[0]?.URL}
               className="text-xs text-secondary-foreground"

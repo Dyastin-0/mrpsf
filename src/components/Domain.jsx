@@ -5,6 +5,8 @@ import useModal from "./hooks/useModal";
 import Proxy from "./Proxy";
 import DomainModal from "./hooks/DomainModal";
 import useHealth from "../hooks/useHealth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLink, faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 const Domain = ({ domain, config }) => {
   const { setModal, setOpen } = useModal();
@@ -42,7 +44,22 @@ const Domain = ({ domain, config }) => {
         "bg-secondary"
       )}
     >
-      <TruncatedText text={domain} className="text-xs" />
+      <div className="flex items-center gap-2">
+        <TruncatedText text={domain} className="text-xs" />
+        <a
+          href={`${
+            config.Protocol !== "" || config.Protocol !== "https"
+              ? "http"
+              : "https"
+          }://${domain}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs hover:text-primary-highlight"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <FontAwesomeIcon icon={faUpRightFromSquare} />
+        </a>
+      </div>
       <Dot value={config.Enabled} />
       <div className="flex flex-wrap gap-2 font-normal">
         <div className="flex gap-2 items-center">

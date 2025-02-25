@@ -36,7 +36,11 @@ const Proxy = ({ domain, config }) => {
       </div>
       <Dot value={enabled} />
       {config.RateLimit && <RateLimiter limiter={config.RateLimit} />}
-      <Routes routes={config.Routes} domain={domain} />
+      <Routes
+        protocol={config.Protocol}
+        routes={config.Routes}
+        domain={domain}
+      />
     </div>
   );
 };
