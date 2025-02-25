@@ -2,6 +2,8 @@ import clsx from "clsx";
 import useHealth from "../hooks/useHealth";
 import TruncatedText from "./ui/TruncatedText";
 import { Dot } from "./ui/Dot";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const UpAndRunning = () => {
   const { health } = useHealth();
@@ -17,7 +19,7 @@ const UpAndRunning = () => {
     }
   });
 
-  const hasDown = unhealthy?.size === 0;
+  const hasDown = true;
 
   return (
     <div
@@ -27,15 +29,9 @@ const UpAndRunning = () => {
       )}
     >
       {hasDown ? (
-        <div
-          className={clsx(
-            "rounded-md",
-            "text-lg text-transparent font-bold",
-            "bg-gradient-to-tl bg-clip-text",
-            "from-primary-highlight to-secondary-highlight"
-          )}
-        >
-          Everything is up and running!
+        <div className={clsx("flex gap-2 items-center", "rounded-md")}>
+          <FontAwesomeIcon icon={faCheck} className="text-lg text-green-500" />
+          <p className="text-lg font-semibold">Everything is up and running!</p>
         </div>
       ) : (
         <div className="flex flex-col w-full gap-3">

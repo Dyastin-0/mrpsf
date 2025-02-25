@@ -20,7 +20,8 @@ const Dashboard = () => {
   return (
     <div
       className={clsx(
-        "flex flex-col w-full h-[calc(100%-3rem)] rounded-md gap-3 p-3 mr-3 mb-3",
+        "relative flex flex-col w-full h-[calc(100%-3rem)]",
+        "rounded-md gap-3 p-3 mr-3 mb-3",
         "bg-primary"
       )}
     >

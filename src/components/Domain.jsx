@@ -38,10 +38,10 @@ const Domain = ({ domain, config }) => {
       }}
       className={clsx(
         "grid col-span-1 w-full h-fit gap-3 p-3 rounded-md",
-        "text-primary-foreground font-semibold",
+        "text-primary-highlight-foreground font-semibold",
         "hover:cursor-pointer",
         "from-primary-highlight to-secondary-highlight",
-        "bg-secondary"
+        "bg-gradient-to-b bg-fixed"
       )}
     >
       <div className="flex items-center gap-2">
@@ -68,7 +68,7 @@ const Domain = ({ domain, config }) => {
             text={`${config?.SortedRoutes?.length || 0} ${
               config?.SortedRoutes?.length > 1 ? "routes" : "route"
             }`}
-            className="text-xs text-primary-highlight"
+            className="text-xs"
           />
         </div>
         <div className="flex gap-2 items-center">
