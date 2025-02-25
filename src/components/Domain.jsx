@@ -6,7 +6,7 @@ import Proxy from "./Proxy";
 import DomainModal from "./hooks/DomainModal";
 import useHealth from "../hooks/useHealth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink, faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 const Domain = ({ domain, config }) => {
   const { setModal, setOpen } = useModal();
@@ -54,7 +54,12 @@ const Domain = ({ domain, config }) => {
           }://${domain}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs hover:text-primary-highlight"
+          className={clsx(
+            "outline-none transition-all duration-300",
+            "text-xs",
+            "hover:text-primary-highlight",
+            "focus:text-primary-highlight"
+          )}
           onClick={(e) => e.stopPropagation()}
         >
           <FontAwesomeIcon icon={faUpRightFromSquare} />

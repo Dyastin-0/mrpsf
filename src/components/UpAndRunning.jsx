@@ -19,7 +19,7 @@ const UpAndRunning = () => {
     }
   });
 
-  const hasDown = true;
+  const hasDown = unhealthy?.size === 0;
 
   return (
     <div
