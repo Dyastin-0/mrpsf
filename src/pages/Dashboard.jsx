@@ -23,32 +23,36 @@ const Dashboard = () => {
     >
       <UpAndRunning />
       <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 w-full h-fit gap-3">
-        <div className="col-span-full">
-          <h2 className="text-xs font-semibold mb-2">
-            {enabledDomains?.length > 1 ? "Active Domains" : "Active Domain"}
-          </h2>
-          <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
-            {enabledDomains.map(([domain, config]) => (
-              <Tooltip key={domain} text={`Configure ${domain}`}>
-                <Domain domain={domain} config={config} />
-              </Tooltip>
-            ))}
+        {enabledDomains?.length > 0 && (
+          <div className="col-span-full">
+            <h2 className="text-xs font-semibold mb-2">
+              {enabledDomains?.length > 1 ? "Active Domains" : "Active Domain"}
+            </h2>
+            <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
+              {enabledDomains.map(([domain, config]) => (
+                <Tooltip key={domain} text={`Configure ${domain}`}>
+                  <Domain domain={domain} config={config} />
+                </Tooltip>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="col-span-full">
-          <h2 className="text-xs font-semibold mb-2">
-            {disabledDomains?.length > 1
-              ? "Inactive Domains"
-              : "Inactive Domain"}
-          </h2>
-          <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
-            {disabledDomains.map(([domain, config]) => (
-              <Tooltip key={domain} text={`Configure ${domain}`}>
-                <Domain domain={domain} config={config} />
-              </Tooltip>
-            ))}
+        )}
+        {disabledDomains?.length > 0 && (
+          <div className="col-span-full">
+            <h2 className="text-xs font-semibold mb-2">
+              {disabledDomains?.length > 1
+                ? "Inactive Domains"
+                : "Inactive Domain"}
+            </h2>
+            <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
+              {disabledDomains.map(([domain, config]) => (
+                <Tooltip key={domain} text={`Configure ${domain}`}>
+                  <Domain domain={domain} config={config} />
+                </Tooltip>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
