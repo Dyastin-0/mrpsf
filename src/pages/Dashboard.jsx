@@ -14,6 +14,9 @@ const Dashboard = () => {
     ([_, config]) => !config.Enabled
   );
 
+  const hasEnabled = enabledDomains?.length > 0;
+  const hasDisabled = disabledDomains?.length > 0;
+
   return (
     <div
       className={clsx(
@@ -23,10 +26,10 @@ const Dashboard = () => {
     >
       <UpAndRunning />
       <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 w-full h-fit gap-3">
-        {enabledDomains?.length > 0 && (
+        {hasEnabled && (
           <div className="col-span-full">
             <h2 className="text-xs font-semibold mb-2">
-              {enabledDomains?.length > 1 ? "Active Domains" : "Active Domain"}
+              {enabledDomains.length > 1 ? "Active Domains" : "Active Domain"}
             </h2>
             <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
               {enabledDomains.map(([domain, config]) => (
@@ -37,10 +40,10 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-        {disabledDomains?.length > 0 && (
+        {hasDisabled && (
           <div className="col-span-full">
             <h2 className="text-xs font-semibold mb-2">
-              {disabledDomains?.length > 1
+              {disabledDomains.length > 1
                 ? "Inactive Domains"
                 : "Inactive Domain"}
             </h2>

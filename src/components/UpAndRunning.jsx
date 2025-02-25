@@ -2,12 +2,9 @@ import clsx from "clsx";
 import useHealth from "../hooks/useHealth";
 import TruncatedText from "./ui/TruncatedText";
 import { Dot } from "./ui/Dot";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 
 const UpAndRunning = () => {
   const { health } = useHealth();
-
   const unhealthy = new Map();
 
   Object.entries(health || {}).forEach(([domain, dests]) => {
@@ -20,18 +17,20 @@ const UpAndRunning = () => {
     }
   });
 
+  const hasDown = unhealthy?.size === 0;
+
   return (
     <div
       className={clsx(
-        "flex w-full justify-center gap-4 rounded-md",
+        "flex w-full gap-4 rounded-md",
         "text-xs text-primary-foreground"
       )}
     >
-      {unhealthy?.size === 0 ? (
+      {hasDown ? (
         <div
           className={clsx(
             "rounded-md",
-            "text-xl text-center text-transparent font-bold",
+            "text-lg text-transparent font-bold",
             "bg-gradient-to-tl bg-clip-text",
             "from-primary-highlight to-secondary-highlight"
           )}
