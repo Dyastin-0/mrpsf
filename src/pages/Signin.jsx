@@ -15,7 +15,6 @@ const Signin = () => {
     <div
       className="flex flex-col justify-center items-center
       w-full h-[calc(100%-3rem)]
-      mx-3 mb-3
       bg-primary text-xs rounded-md"
     >
       <SigninForm />

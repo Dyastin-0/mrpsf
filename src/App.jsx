@@ -9,6 +9,7 @@ import useAuth from "./hooks/useAuth";
 const Signin = lazy(() => import("./pages/Signin"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Terminal = lazy(() => import("./pages/Terminal"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_API_URL;
 axios.defaults.withCredentials = true;
@@ -28,6 +29,7 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/terminal" element={<Terminal />} />
             </Route>
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </div>
