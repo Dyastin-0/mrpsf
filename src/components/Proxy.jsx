@@ -14,7 +14,7 @@ const Proxy = ({ domain, config }) => {
   const [enabled, setEnabled] = useState(config.Enabled);
 
   const handleEnabled = async () => {
-    const res = await api.post(`/config/${domain}/enabled?t=${token}`, {
+    const res = await api.post(`/config/${domain}/enable?t=${token}`, {
       enabled: !enabled,
     });
 
