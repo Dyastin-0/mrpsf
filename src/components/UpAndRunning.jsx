@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useMemo } from "react";
 import useHealth from "../hooks/useHealth";
 import TruncatedText from "./ui/TruncatedText";
 import { Dot } from "./ui/Dot";
@@ -9,21 +10,30 @@ import useDomains from "../hooks/useDomains";
 const UpAndRunning = () => {
   const { health } = useHealth();
   const { domains } = useDomains();
-  const unhealthy = new Map();
 
-  Object.entries(health || {}).forEach(([domain, dests]) => {
-    if (!domains[domain].enabled) return
+  const unhealthy = useMemo(() => {
+    const unhealthyMap = new Map();
 
-    const unhealthyDests = Object.entries(dests)
-      .filter(([, isAlive]) => !isAlive)
-      .map(([url]) => url);
-
-    if (unhealthyDests.length > 0) {
-      unhealthy.set(domain, unhealthyDests);
+    if (!health || !domains) {
+      return unhealthyMap;
     }
-  });
 
-  const hasDown = unhealthy?.size === 0;
+    Object.entries(health).forEach(([domain, dests]) => {
+      if (!domains[domain]?.enabled) return;
+
+      const unhealthyDests = Object.entries(dests)
+        .filter(([, isAlive]) => !isAlive)
+        .map(([url]) => url);
+
+      if (unhealthyDests.length > 0) {
+        unhealthyMap.set(domain, unhealthyDests);
+      }
+    });
+
+    return unhealthyMap;
+  }, [health, domains]);
+
+  const hasDown = unhealthy.size > 0;
 
   return (
     <div
@@ -32,7 +42,7 @@ const UpAndRunning = () => {
         "text-xs text-primary-foreground"
       )}
     >
-      {hasDown ? (
+      {!hasDown ? (
         <div className={clsx("flex gap-2 items-center", "rounded-md")}>
           <FontAwesomeIcon icon={faCheck} className="text-lg text-green-500" />
           <p className="text-lg font-semibold">Everything is up and running!</p>
@@ -40,15 +50,14 @@ const UpAndRunning = () => {
       ) : (
         <div className="flex flex-col w-full gap-3">
           <div className="flex gap-2 w-full">
-            <span className="font-bold  text-yellow-500">WRN</span>
+            <span className="font-bold text-yellow-500">WRN</span>
             <h2 className="text-xs font-semibold">Some routes are down</h2>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[...unhealthy.entries()].map(([domain, urls]) => (
               <div
                 key={domain}
-                className="flex flex-col over p-3 gap-3 bg-secondary rounded-md"
+                className="flex flex-col p-3 gap-3 bg-secondary rounded-md"
               >
                 <h3 className="font-bold">{domain}</h3>
                 <div className="flex flex-wrap gap-3">
