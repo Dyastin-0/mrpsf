@@ -4,12 +4,16 @@ import TruncatedText from "./ui/TruncatedText";
 import { Dot } from "./ui/Dot";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import useDomains from "../hooks/useDomains";
 
 const UpAndRunning = () => {
   const { health } = useHealth();
+  const { domains } = useDomains();
   const unhealthy = new Map();
 
   Object.entries(health || {}).forEach(([domain, dests]) => {
+    if (!domains[domain].enabled) return
+
     const unhealthyDests = Object.entries(dests)
       .filter(([, isAlive]) => !isAlive)
       .map(([url]) => url);
