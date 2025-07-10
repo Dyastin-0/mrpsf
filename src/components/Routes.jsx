@@ -20,9 +20,8 @@ const Routes = ({ protocol, routes, domain }) => {
             />
             <div className="flex items-center gap-2">
               <a
-                href={`${
-                  protocol !== "" || protocol !== "https" ? "http" : "https"
-                }://${domain}${path}`}
+                href={`${protocol !== "" || protocol !== "https" ? "http" : "https"
+                  }://${domain}${path}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs hover:text-primary-highlight"

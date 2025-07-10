@@ -9,7 +9,6 @@ import {
   faFile,
   faSignOut,
   faSync,
-  faTerminal,
 } from "@fortawesome/free-solid-svg-icons";
 import { routes, authRoutes } from "../helpers/routes";
 import Link from "./ui/Link";

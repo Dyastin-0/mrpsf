@@ -4,7 +4,6 @@ import useHealth from "../hooks/useHealth";
 import useViewport from "../hooks/useViewport";
 import Stat from "./Stat";
 import Uptime from "./Uptime";
-import Separator from "./ui/Separator";
 import Button from "./ui/Button";
 import {
   faClock,
@@ -27,8 +26,12 @@ const Sidebar = () => {
   const { setModal, setOpen } = useModal();
   const navigate = useNavigate();
 
+  const filteredHealth = Object.fromEntries(
+    Object.entries(health || {})?.filter(([key]) => (domains || {})[key]?.Enabled)
+  )
+
   const domainEntries = Object.entries(domains || {});
-  const healthEntries = Object.entries(health || {}).flatMap(
+  const healthEntries = Object.entries(filteredHealth || {}).flatMap(
     ([_, domainHealth]) => Object.entries(domainHealth)
   );
 
@@ -36,12 +39,14 @@ const Sidebar = () => {
     (acc, [, domain]) => acc + (domain.Enabled ? 1 : 0),
     0
   );
-  const healthCount = Object.values(health || {}).reduce(
-    (acc, domainHealth) => {
-      return acc + Object.values(domainHealth).filter((val) => val).length;
-    },
-    0
-  );
+
+  const healthCount = Object.values(filteredHealth || {})
+    .reduce(
+      (acc, domainHealth) => {
+        return acc + Object.values(domainHealth).filter((val) => val).length;
+      },
+      0
+    );
 
   const Domain = () => (
     <Stat
@@ -61,7 +66,7 @@ const Sidebar = () => {
       length={healthEntries.length}
       tooltip={{
         g: "Healthy routes",
-        r: "Unhealthy routes (possibly down)",
+        r: "Unhealthy routes",
       }}
     />
   );
