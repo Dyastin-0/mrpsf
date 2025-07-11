@@ -51,7 +51,7 @@ const Dashboard = () => {
             <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-3">
               {disabledDomains.map(([domain, config]) => (
                 <Tooltip key={domain} text={`Configure ${domain}`}>
-                  <Domain domain={domain} config={config} />
+                  <Domain protocol={config.Protocol} domain={domain} config={config} />
                 </Tooltip>
               ))}
             </div>
