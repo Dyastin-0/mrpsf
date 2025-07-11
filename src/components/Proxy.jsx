@@ -33,7 +33,7 @@ const Proxy = ({ protocol, domain, config }) => {
       <div className="flex gap-2 w-full justify-between items-center">
         <div className="flex gap-2">
           <TruncatedText text={domain} className="text-xs font-semibold" />
-          <TruncatedText text={protocol.toUpperCase()} className="text-xs font-bold" />
+          <TruncatedText text={protocol?.toUpperCase()} className="text-xs font-bold" />
         </div>
         <Toggle value={enabled} onClick={handleEnabled} />
       </div>

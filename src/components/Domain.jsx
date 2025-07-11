@@ -63,7 +63,7 @@ const Domain = ({ protocol, domain, config }) => {
           >
             <FontAwesomeIcon icon={faUpRightFromSquare} />
           </a>}
-        <TruncatedText text={protocol.toUpperCase()} className="text-xs font-bold" />
+        <TruncatedText text={protocol?.toUpperCase()} className="text-xs font-bold" />
       </div>
       <Dot value={config.Enabled} />
       <div className="flex flex-wrap gap-2 font-normal">
