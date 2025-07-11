@@ -11,6 +11,8 @@ const UpAndRunning = () => {
   const { domains } = useDomains();
   const unhealthy = new Map();
 
+  console.log(health)
+
   Object.entries(health || {}).forEach(([domain, dests]) => {
     if (!(domains || {})[domain]?.Enabled) return;
 

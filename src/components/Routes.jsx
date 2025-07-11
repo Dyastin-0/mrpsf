@@ -10,12 +10,19 @@ const Routes = ({ protocol, routes, domain }) => {
   return (
     <>
       <h3 className="text-xs font-semibold">Routes</h3>
-      {Object.entries(routes).map(([path, routeConfig]) => (
-        <div key={path} className="flex flex-col gap-2 items-center">
+      {Object.entries(routes).map(([path, routeConfig]) => {
+        const url = protocol === "http" ?
+          health[domain][routeConfig.Balancer.Dests[0].URL] :
+          health[domain][routeConfig.BalancerTCP.Dests[0].URL]
+        const destLen = protocol === "http" ?
+          routeConfig.Balancer.Dests.length :
+          routeConfig.BalancerTCP.Dests.length
+
+        return <div key={path} className="flex flex-col gap-2 items-center">
           <div className="flex w-full items-center gap-2">
             <Dot
               value={
-                health && health[domain][routeConfig.Balancer.Dests[0].URL]
+                health && url
               }
             />
             <div className="flex items-center gap-2">
@@ -68,7 +75,7 @@ const Routes = ({ protocol, routes, domain }) => {
               />
             )}
           </div>
-          {routeConfig.Balancer.Dests.length > 1 && (
+          {destLen > 1 && (
             <div className="flex flex-col w-full gap-2 ml-8">
               <h3 className="text-xs">Balancer</h3>
               {routeConfig.Balancer.Dests.map((dest, i) => (
@@ -80,7 +87,10 @@ const Routes = ({ protocol, routes, domain }) => {
             </div>
           )}
         </div>
-      ))}
+      }
+
+      )}
+
     </>
   );
 };

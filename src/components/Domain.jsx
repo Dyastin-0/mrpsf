@@ -8,7 +8,7 @@ import useHealth from "../hooks/useHealth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
-const Domain = ({ domain, config }) => {
+const Domain = ({ protocol, domain, config }) => {
   const { setModal, setOpen } = useModal();
   const { health } = useHealth();
 
@@ -16,7 +16,9 @@ const Domain = ({ domain, config }) => {
     config.Routes || {}
   ).reduce(
     (acc, route) => {
-      const dests = route.Balancer?.Dests || [];
+      const dests = protocol === "http" ?
+        route.Balancer?.Dests || [] :
+        route.BalancerTCP?.Dests || [];
       acc.totalBalancers += dests.length > 1 ? dests.length : 0;
 
       acc.totalAliveDests += dests.filter(
@@ -47,11 +49,10 @@ const Domain = ({ domain, config }) => {
       <div className="flex items-center gap-2">
         <TruncatedText text={domain} className="text-xs" />
         <a
-          href={`${
-            config.Protocol !== "" || config.Protocol !== "https"
-              ? "http"
-              : "https"
-          }://${domain}`}
+          href={`${config.Protocol !== "" || config.Protocol !== "https"
+            ? "http"
+            : "https"
+            }://${domain}`}
           target="_blank"
           rel="noopener noreferrer"
           className={clsx(
@@ -64,33 +65,31 @@ const Domain = ({ domain, config }) => {
         >
           <FontAwesomeIcon icon={faUpRightFromSquare} />
         </a>
+        <TruncatedText text={protocol} className="text-xs" />
       </div>
       <Dot value={config.Enabled} />
       <div className="flex flex-wrap gap-2 font-normal">
         <div className="flex gap-2 items-center">
           &#8226;
           <TruncatedText
-            text={`${config?.SortedRoutes?.length || 0} ${
-              config?.SortedRoutes?.length > 1 ? "routes" : "route"
-            }`}
+            text={`${config?.SortedRoutes?.length || 0} ${config?.SortedRoutes?.length > 1 ? "routes" : "route"
+              }`}
             className="text-xs"
           />
         </div>
         <div className="flex gap-2 items-center">
           &#8226;
           <TruncatedText
-            text={`${totalAliveDests} ${
-              totalAliveDests > 1 ? "dests" : "dest"
-            } alive`}
+            text={`${totalAliveDests} ${totalAliveDests > 1 ? "dests" : "dest"
+              } alive`}
             className="text-xs"
           />
         </div>
         <div className="flex gap-2 items-center">
           &#8226;
           <TruncatedText
-            text={`${totalBalancers} ${
-              totalBalancers > 1 ? "balancers" : "balancer"
-            }`}
+            text={`${totalBalancers} ${totalBalancers > 1 ? "balancers" : "balancer"
+              }`}
             className="text-xs"
           />
         </div>
