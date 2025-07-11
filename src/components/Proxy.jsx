@@ -8,7 +8,7 @@ import useAuth from "../hooks/useAuth";
 import { Dot } from "./ui/Dot";
 import clsx from "clsx";
 
-const Proxy = ({ domain, config }) => {
+const Proxy = ({ protocol, domain, config }) => {
   const { api } = useAxios();
   const { token } = useAuth();
   const [enabled, setEnabled] = useState(config.Enabled);
@@ -31,7 +31,10 @@ const Proxy = ({ domain, config }) => {
       )}
     >
       <div className="flex gap-2 w-full justify-between items-center">
-        <TruncatedText text={domain} className="text-xs font-semibold" />
+        <div className="flex gap-2">
+          <TruncatedText text={domain} className="text-xs font-semibold" />
+          <TruncatedText text={protocol.toUpperCase()} className="text-xs font-bold" />
+        </div>
         <Toggle value={enabled} onClick={handleEnabled} />
       </div>
       <Dot value={enabled} />

@@ -34,7 +34,7 @@ const Domain = ({ protocol, domain, config }) => {
     <div
       onClick={() => {
         setModal(
-          <DomainModal domain={<Proxy domain={domain} config={config} />} />
+          <DomainModal domain={<Proxy protocol={protocol} domain={domain} config={config} />} />
         );
         setOpen(true);
       }}
@@ -63,7 +63,7 @@ const Domain = ({ protocol, domain, config }) => {
           >
             <FontAwesomeIcon icon={faUpRightFromSquare} />
           </a>}
-        <TruncatedText text={protocol.toUpperCase()} className="text-xs" />
+        <TruncatedText text={protocol.toUpperCase()} className="text-xs font-bold" />
       </div>
       <Dot value={config.Enabled} />
       <div className="flex flex-wrap gap-2 font-normal">
