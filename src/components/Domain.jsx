@@ -48,24 +48,22 @@ const Domain = ({ protocol, domain, config }) => {
     >
       <div className="flex items-center gap-2">
         <TruncatedText text={domain} className="text-xs" />
-        <a
-          href={`${config.Protocol !== "" || config.Protocol !== "https"
-            ? "http"
-            : "https"
-            }://${domain}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={clsx(
-            "outline-none transition-all duration-300",
-            "text-xs",
-            "hover:text-primary-highlight",
-            "focus:text-primary-highlight"
-          )}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <FontAwesomeIcon icon={faUpRightFromSquare} />
-        </a>
-        <TruncatedText text={protocol} className="text-xs" />
+        {protocol === "http" &&
+          <a
+            href={`https://${domain}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={clsx(
+              "outline-none transition-all duration-300",
+              "text-xs",
+              "hover:text-primary-highlight",
+              "focus:text-primary-highlight"
+            )}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <FontAwesomeIcon icon={faUpRightFromSquare} />
+          </a>}
+        <TruncatedText text={protocol.toUpperCase()} className="text-xs" />
       </div>
       <Dot value={config.Enabled} />
       <div className="flex flex-wrap gap-2 font-normal">
@@ -94,7 +92,7 @@ const Domain = ({ protocol, domain, config }) => {
           />
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

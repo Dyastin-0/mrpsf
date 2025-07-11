@@ -12,37 +12,42 @@ const Routes = ({ protocol, routes, domain }) => {
       <h3 className="text-xs font-semibold">Routes</h3>
       {Object.entries(routes).map(([path, routeConfig]) => {
         const url = protocol === "http" ?
-          health[domain][routeConfig.Balancer.Dests[0].URL] :
-          health[domain][routeConfig.BalancerTCP.Dests[0].URL]
+          routeConfig.Balancer.Dests[0].URL :
+          routeConfig.BalancerTCP.Dests[0].URL;
+        const healthy = protocol === "http" ?
+          health[domain][url] :
+          health[domain][url];
         const destLen = protocol === "http" ?
           routeConfig.Balancer.Dests.length :
-          routeConfig.BalancerTCP.Dests.length
+          routeConfig.BalancerTCP.Dests.length;
+
+        console.log(url)
 
         return <div key={path} className="flex flex-col gap-2 items-center">
           <div className="flex w-full items-center gap-2">
             <Dot
               value={
-                health && url
+                health && healthy
               }
             />
             <div className="flex items-center gap-2">
-              <a
-                href={`${protocol !== "" || protocol !== "https" ? "http" : "https"
-                  }://${domain}${path}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs hover:text-primary-highlight"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <FontAwesomeIcon icon={faUpRightFromSquare} />
-              </a>
+              {protocol === "http" &&
+                <a
+                  href={`https://${domain}/${path}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs hover:text-primary-highlight"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FontAwesomeIcon icon={faUpRightFromSquare} />
+                </a>}
               <TruncatedText
                 text={path}
                 className="text-xs text-primary-highlight"
               />
             </div>
             <TruncatedText
-              text={routeConfig.Balancer?.Dests[0]?.URL}
+              text={url}
               className="text-xs text-secondary-foreground"
             />
             {routeConfig.RewriteRule.Type !== "" && (
