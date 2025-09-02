@@ -1,4 +1,3 @@
-import React from "react";
 import { colors } from "../helpers/color";
 import { parseJSON } from "../helpers/parse";
 import clsx from "clsx";
@@ -35,14 +34,14 @@ const Log = ({ log }) => {
             >
               {key === "time"
                 ? new Date(value)
-                    .toLocaleString("en-US", {
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      second: "2-digit",
-                      hour12: false,
-                    })
-                    .replace(",", "")
+                  .toLocaleString("en-US", {
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: false,
+                  })
+                  .replace(",", "")
                 : format[value] || value}
             </span>{" "}
           </div>
