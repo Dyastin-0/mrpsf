@@ -1,12 +1,11 @@
-[Unit]
 Description=mrps frontend
 After=network.target multi-user.target
 
 [Service]
-User=ubuntu
+User=mrps
 
-WorkingDirectory=/home/ubuntu/mrps-frontend
-ExecStart=/usr/bin/npm start
+WorkingDirectory=/home/mrps/prod/mrpsf
+ExecStart=node index.cjs
 StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=mrpsf
