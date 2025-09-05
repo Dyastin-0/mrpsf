@@ -57,6 +57,7 @@ const XTerm = () => {
       if (rcev.type === "END") {
         term.current.write(rcev.message);
         sessionIDRef.current = "";
+        toastInfo("ssh disconnected");
         return;
       }
 
@@ -87,7 +88,7 @@ const XTerm = () => {
       await api.post("/ssh");
       toastInfo("ssh connected");
     } catch (error) {
-      toastInfo("Failed to connect to ssh");
+      toastInfo("failed to connect to ssh");
     }
   };
 
