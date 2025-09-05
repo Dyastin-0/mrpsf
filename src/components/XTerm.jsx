@@ -37,7 +37,6 @@ const XTerm = () => {
     term.current.onData((data) => {
       if (data === "\u0004") {
         sendMessage({ SSHCommand: data, SessionID: sessionIDRef.current });
-        sessionIDRef.current = "";
         return;
       }
       sendMessage({ SSHCommand: data, SessionID: sessionIDRef.current });
@@ -54,6 +53,13 @@ const XTerm = () => {
         });
         return;
       }
+
+      if (rcev.type === "END") {
+        term.current.write(rcev.message);
+        sessionIDRef.current = "";
+        return;
+      }
+
       term.current.write(rcev.message);
     });
 
