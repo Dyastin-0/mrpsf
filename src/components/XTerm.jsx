@@ -1,5 +1,5 @@
 import "xterm/css/xterm.css";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import { WebLinksAddon } from "xterm-addon-web-links";
@@ -25,10 +25,6 @@ const XTerm = () => {
       cursorBlink: true,
       fontSize: 14,
       convertEol: true,
-      theme: {
-        selectionBackground: "#5331b6",
-        cursor: "#5331b6",
-      },
     });
 
     fitAddon.current.activate();
@@ -37,6 +33,12 @@ const XTerm = () => {
     term.current.open(terminalRef.current);
     fitAddon.current.fit();
     term.current.focus();
+
+    sendMessage({
+      SSHCommand: "resize",
+      Rows: term.current.rows,
+      Cols: term.current.cols,
+    });
 
     term.current.onData((data) => {
       if (data === "\u0004") {
@@ -56,7 +58,16 @@ const XTerm = () => {
       term.current.write(rcev.message);
     });
 
-    const handleResize = () => fitAddon.current.fit();
+    const handleResize = () => {
+      fitAddon.current.fit();
+      sendMessage({
+        type: "resize",
+        rows: term.current.rows,
+        cols: term.current.cols,
+        SessionID: sessionIDRef.current,
+      });
+    };
+
     window.addEventListener("resize", handleResize);
 
     return () => {
