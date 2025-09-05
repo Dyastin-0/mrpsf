@@ -36,7 +36,6 @@ const XTerm = () => {
 
     term.current.onData((data) => {
       if (data === "\u0004") {
-        term.current.write("\n\nssh disconnected");
         sendMessage({ SSHCommand: data, SessionID: sessionIDRef.current });
         sessionIDRef.current = "";
         return;
@@ -89,13 +88,6 @@ const XTerm = () => {
   useEffect(() => {
     if (!isAxiosReady) return;
     handleConnectTerminal();
-
-    return () => {
-      if (sessionIDRef.current !== "") {
-        sendMessage({ SSHCommand: "\u0004", SessionID: sessionIDRef.current });
-        sessionIDRef.current = "";
-      }
-    };
   }, [isAxiosReady]);
 
   return (
