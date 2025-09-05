@@ -34,13 +34,6 @@ const XTerm = () => {
     fitAddon.current.fit();
     term.current.focus();
 
-    sendMessage({
-      SSHCommand: "resize",
-      Rows: term.current.rows,
-      Cols: term.current.cols,
-      SessionID: sessionIDRef.current,
-    });
-
     term.current.onData((data) => {
       if (data === "\u0004") {
         term.current.write("\n\nssh disconnected");
@@ -54,6 +47,12 @@ const XTerm = () => {
     setTerminalCallback((rcev) => {
       if (rcev.type === "sshSessionID") {
         sessionIDRef.current = rcev.message;
+        sendMessage({
+          SSHCommand: "resize",
+          Rows: term.current.rows,
+          Cols: term.current.cols,
+          SessionID: sessionIDRef.current,
+        });
         return;
       }
       term.current.write(rcev.message);
