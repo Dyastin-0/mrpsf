@@ -38,6 +38,7 @@ const XTerm = () => {
       SSHCommand: "resize",
       Rows: term.current.rows,
       Cols: term.current.cols,
+      SessionID: sessionIDRef.current,
     });
 
     term.current.onData((data) => {
