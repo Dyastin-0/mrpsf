@@ -78,12 +78,10 @@ export const WSProvider = ({ children }) => {
             break;
           case "stdout":
           case "sshSessionID":
+          case "end":
             if (terminalCallback.current) {
               terminalCallback.current(data);
             }
-            break;
-          case "notif":
-            toastInfo(data.message);
             break;
           default:
             console.warn("Unknown message type:", data.type);

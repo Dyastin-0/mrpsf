@@ -54,13 +54,6 @@ const XTerm = () => {
         return;
       }
 
-      if (rcev.type === "END") {
-        term.current.write(rcev.message);
-        sessionIDRef.current = "";
-        toastInfo("ssh disconnected");
-        return;
-      }
-
       term.current.write(rcev.message);
     });
 
